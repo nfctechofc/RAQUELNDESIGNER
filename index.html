@@ -1,483 +1,1132 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
+    <meta charset="UTF-8">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cozy Winter | Beleza das Unhas</title>
+  <meta name="theme-color" content="#76172e">
+  <meta name="description" content="Agende seu atendimento com Raquel Salazar, Nail Designer. Escolha seu serviço, data e horário.">
+  <title>Agendamento | Raquel Salazar Nail Designer</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --wine: #76172e;
       --wine-light: #a52c49;
+      --pink: #f1a0b0;
+      --pink-soft: #f8e6e8;
       --ink: #211817;
       --cream: #fffdfb;
       --muted: #786d6b;
+      --border: #ead2d4;
+      --white: #ffffff;
+      --shadow: 0 18px 55px rgba(83, 24, 39, .09);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: "DM Sans", sans-serif; color: var(--ink); background: var(--cream); }
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; cursor: pointer; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 25px;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.6;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+    }
 
     .hero {
-      min-height: 680px;
       position: relative;
+      min-height: 370px;
       overflow: hidden;
       color: white;
       background:
-        linear-gradient(90deg, rgba(15, 8, 9, 0.88) 0%, rgba(44, 19, 21, .65) 42%, rgba(44, 19, 21, .05) 75%),
-        url("Gemini_Generated_Image_sugnwvsugnwvsugn.jpg") center 42% / cover no-repeat,
-        #444242;
+        linear-gradient(90deg, rgba(24, 10, 13, .91), rgba(65, 22, 34, .70)),
+        url("img/Gemini_Generated_Image_sugnwvsugnwvsugn.jpg")
+        center 42% / cover no-repeat,
+        #32151e;
     }
 
-    .hero::before, .hero::after {
+    .hero::before,
+    .hero::after {
       content: "✿";
       position: absolute;
-      color: #a42c49;
-      opacity: .7;
-      font-size: clamp(100px, 15vw, 220px);
+      color: var(--wine-light);
+      opacity: .38;
+      font-size: clamp(110px, 18vw, 220px);
       line-height: 1;
       pointer-events: none;
-      text-shadow: 0 4px 30px rgba(0,0,0,.2);
     }
-    .hero::before { top: -70px; left: -40px; transform: rotate(-25deg); }
-    .hero::after { bottom: -100px; right: -20px; transform: rotate(25deg); }
+
+    .hero::before {
+      top: -55px;
+      left: -35px;
+      transform: rotate(-25deg);
+    }
+
+    .hero::after {
+      bottom: -95px;
+      right: -15px;
+      transform: rotate(25deg);
+    }
 
     .navbar {
-      width: min(1200px, 90%);
+      position: relative;
+      z-index: 2;
+      width: min(1120px, 90%);
+      min-height: 82px;
       margin: auto;
-      min-height: 86px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
-      position: relative;
-      z-index: 2;
+      gap: 20px;
     }
+
     .logo {
-      font: 700 34px/1 "Playfair Display", serif;
-      letter-spacing: -2px;
+      font: 700 28px/1.1 "Playfair Display", serif;
+      letter-spacing: -1px;
       white-space: nowrap;
     }
-    .logo span { color: #f1a0b0; }
-    .nav-links { display: flex; gap: clamp(14px, 2.3vw, 32px); align-items: center; }
+
+    .logo span {
+      display: block;
+      margin-top: 5px;
+      font: 500 9px "DM Sans", sans-serif;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--pink);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
     .nav-links a {
-      font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
-      opacity: .88; transition: opacity .2s;
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.85);
+      transition: color .2s;
     }
-    .nav-links a:hover { opacity: 1; }
+
+    .nav-links a:hover {
+      color: var(--pink);
+    }
+
     .nav-cta {
-      border: 1px solid rgba(255,255,255,.7); border-radius: 999px;
-      padding: 11px 18px; font-size: 11px; text-transform: uppercase;
-      letter-spacing: .08em; white-space: nowrap;
+      border: 1px solid rgba(255,255,255,.65);
+      border-radius: 999px;
+      padding: 10px 17px;
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: .2s;
     }
+
+    .nav-cta:hover {
+      background: white;
+      color: var(--wine);
+    }
+
     .menu-toggle {
-      display: none; border: 1px solid rgba(255,255,255,.5); color: white;
-      background: transparent; border-radius: 8px; padding: 8px 11px;
+      display: none;
+      color: white;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.5);
+      border-radius: 9px;
+      padding: 8px 12px;
     }
 
     .hero-content {
-      width: min(1200px, 90%);
-      margin: auto;
-      min-height: 555px;
-      display: flex;
-      align-items: center;
       position: relative;
       z-index: 1;
+      width: min(1120px, 90%);
+      min-height: 270px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      padding: 28px 0 65px;
     }
-    .hero-copy { max-width: 440px; padding: 35px 0 80px; }
-    .profile-photo {
-      width: 142px;
-      height: 142px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      margin-bottom: 24px;
-      border: 3px solid rgba(255, 255, 255, .9);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, .35), 0 0 0 6px rgba(165, 44, 73, .28);
+
+    .hero-copy {
+      max-width: 600px;
     }
 
     .eyebrow {
-      display: block; font-size: 10px; letter-spacing: .25em;
-      text-transform: uppercase; color: #f0b5c0; margin-bottom: 20px;
+      display: block;
+      margin-bottom: 15px;
+      color: var(--pink);
+      font-size: 10px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
     }
-    h1, h2, h3 { font-family: "Playfair Display", serif; font-weight: 600; }
-    h1 { font-size: clamp(42px, 5.2vw, 70px); line-height: 1.04; letter-spacing: -.035em; }
-    .hero-copy p { color: rgba(255,255,255,.82); font-size: 14px; line-height: 1.8; max-width: 330px; margin: 22px 0 28px; }
+
+    h1, h2, h3 {
+      font-family: "Playfair Display", serif;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: clamp(39px, 6vw, 66px);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+    }
+
+    .hero-copy p {
+      max-width: 450px;
+      margin-top: 17px;
+      color: rgba(255,255,255,.8);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .hero-heart {
+      color: var(--pink);
+    }
+
     .button {
-      display: inline-flex; align-items: center; justify-content: center;
-      background: var(--wine); color: white; border: 1px solid var(--wine);
-      border-radius: 999px; padding: 14px 25px; font-size: 10px;
-      letter-spacing: .14em; text-transform: uppercase; transition: .2s;
-    }
-    .button:hover { background: var(--wine-light); transform: translateY(-2px); }
-    .button.outline { background: transparent; border-color: rgba(255,255,255,.55); }
-
-
-
-    /* Carrossel circular inspirado no React Bits, adaptado para HTML puro */
-    .carousel-section {
-      padding: 72px 5% 82px;
-      overflow: hidden;
-      color: #fff;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 13px 23px;
+      border: 1px solid var(--wine);
+      border-radius: 999px;
+      background: var(--wine);
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
       text-align: center;
-      background: radial-gradient(ellipse at 50% 0%, #5b2430 0%, #241719 55%, #130f10 100%);
+      text-transform: uppercase;
+      transition: background .2s, transform .2s;
     }
-    .carousel-section .section-kicker { color: #e6a4b2; }
-    .carousel-section h2 { font-size: clamp(34px, 4vw, 52px); margin: 8px 0 12px; }
-    .carousel-intro { max-width: 560px; margin: 0 auto; color: rgba(255,255,255,.72); font-size: 13px; line-height: 1.8; }
-    .circular-carousel {
-      --cc-radius: 14px;
-      position: relative;
-      width: min(100%, 1050px);
-      height: 510px;
-      margin: 20px auto 0;
-      overflow: hidden;
-      perspective: 1500px;
-      touch-action: pan-y;
-      user-select: none;
-      cursor: grab;
-      outline: none;
-    }
-    .circular-carousel.is-dragging { cursor: grabbing; }
-    .cc-stage { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-    .cc-ring { position: relative; width: 0; height: 0; transform-style: preserve-3d; will-change: transform; }
-    .cc-card {
-      position: absolute; left: 0; top: 0;
-      width: 220px; height: 270px;
-      margin-left: -110px; margin-top: -135px;
-      border-radius: var(--cc-radius); overflow: hidden;
-      transform-style: preserve-3d; backface-visibility: hidden;
-      box-shadow: 0 18px 45px rgba(0,0,0,.32);
-      border: 1px solid rgba(255,255,255,.14);
-      transition: filter .25s ease;
-    }
-    .cc-card img { display: block; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-    .cc-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(18,8,10,.78)); pointer-events: none; }
-    .cc-card-title { position: absolute; z-index: 1; left: 12px; right: 12px; bottom: 15px; color: white; font: 600 18px 'Playfair Display', serif; text-shadow: 0 2px 12px #000; }
-    .cc-caption { min-height: 62px; display: flex; flex-direction: column; align-items: center; gap: 5px; margin-top: -8px; color: white; }
-    .cc-caption strong { font: 600 19px 'Playfair Display', serif; }
-    .cc-caption span { font-size: 11px; letter-spacing: .13em; text-transform: uppercase; color: #e5a7b4; }
-    .cc-controls { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 12px; }
-    .cc-controls button { width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.38); border-radius: 50%; color: #fff; background: rgba(255,255,255,.06); transition: .2s; }
-    .cc-controls button:hover { background: #76172e; border-color: #a52c49; }
-    .cc-count { color: rgba(255,255,255,.65); font-size: 12px; font-variant-numeric: tabular-nums; }
-    @media (max-width: 700px) {
-      .carousel-section { padding: 58px 4% 65px; }
-      .circular-carousel { height: 390px; }
-      .cc-card { width: 165px; height: 205px; margin-left: -82.5px; margin-top: -102.5px; }
-      .cc-card-title { font-size: 15px; }
-    }
-    @media (prefers-reduced-motion: reduce) { .cc-card, .cc-controls button { transition: none; } }
 
-    .collection {
-      position: relative; padding: 76px 5% 90px; text-align: center;
+    .button:hover {
+      background: var(--wine-light);
+      transform: translateY(-2px);
+    }
+
+    .hero .button {
+      margin-top: 23px;
+      background: transparent;
+      border-color: rgba(255,255,255,.6);
+    }
+
+    .hero .button:hover {
+      background: white;
+      color: var(--wine);
+    }
+
+    .section {
+      padding: 72px 5%;
+    }
+
+    .section-inner {
+      width: min(1050px, 100%);
+      margin: auto;
+    }
+
+    .section-heading {
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .section-kicker {
+      margin-bottom: 10px;
+      color: var(--wine);
+      font-size: 10px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      color: #481520;
+      font-size: clamp(34px, 5vw, 50px);
+      line-height: 1.15;
+    }
+
+    .section-intro {
+      max-width: 570px;
+      margin: 13px auto 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    /* Serviços */
+
+    .services-section {
       background:
-        radial-gradient(ellipse at 20% 15%, rgba(206,195,188,.18), transparent 28%),
-        radial-gradient(ellipse at 90% 60%, rgba(206,195,188,.15), transparent 30%),
+        radial-gradient(ellipse at 10% 15%, rgba(222,151,162,.12), transparent 35%),
         #fffdfb;
     }
-    .collection::before {
-      content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .2;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
-    }
-    .section-inner { width: min(1100px, 100%); margin: auto; position: relative; }
-    .section-kicker { font-size: 10px; color: var(--wine); letter-spacing: .24em; text-transform: uppercase; margin-bottom: 12px; }
-    h2 { font-size: clamp(38px, 5vw, 58px); letter-spacing: -.04em; }
-    .section-intro { max-width: 480px; margin: 13px auto 38px; font-size: 13px; line-height: 1.8; color: var(--muted); }
-    .product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; text-align: center; }
-    .product-card { min-width: 0; }
-    .product-image {
-      overflow: hidden; border-radius: 25px; aspect-ratio: 1 / .92;
-      background: #eadfdd; margin-bottom: 18px; position: relative;
-    }
-    .product-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s; }
-    .product-card:hover .product-image img { transform: scale(1.06); }
-    .product-tag {
-      position: absolute; left: 13px; top: 13px; border-radius: 999px;
-      background: rgba(255,255,255,.9); color: var(--wine);
-      padding: 7px 10px; font-size: 9px; letter-spacing: .08em; text-transform: uppercase;
-    }
-    .product-card h3 { font-size: 22px; margin-bottom: 7px; }
-    .product-card p { color: var(--muted); font-size: 12px; line-height: 1.7; }
-    .product-card .price { color: var(--wine); font-weight: 700; margin-top: 10px; }
-    .discover { margin-top: 38px; }
 
-    .feature {
-      background: #f3e9e6; padding: 72px 5%;
-    }
-    .feature-inner { width: min(1100px, 100%); margin: auto; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; }
-    .feature-photo { min-height: 360px; border-radius: 28px; overflow: hidden; }
-    .feature-photo img { width: 100%; height: 100%; min-height: 360px; object-fit: cover; display: block; }
-    .feature-copy h2 { font-size: clamp(34px, 4vw, 48px); line-height: 1.12; }
-    .feature-copy p { color: var(--muted); font-size: 14px; line-height: 1.9; margin: 20px 0 26px; max-width: 440px; }
-
-    footer { background: #383737; color: white; padding: 32px 5%; }
-    .footer-inner { width: min(1100px, 100%); margin: auto; display: flex; justify-content: space-between; gap: 20px; align-items: center; }
-    footer p { color: rgba(255,255,255,.62); font-size: 11px; }
-    .footer-links { display: flex; gap: 18px; font-size: 11px; }
-
-    @media (max-width: 760px) {
-      .hero { min-height: 650px; background-position: 58% center; }
-      .navbar { min-height: 75px; }
-      .menu-toggle { display: block; position: relative; z-index: 5; }
-      .nav-links {
-        display: none; position: absolute; top: 66px; right: 0; left: 0;
-        flex-direction: column; align-items: stretch; gap: 0; padding: 12px;
-        background: rgba(35, 18, 19, .97); border: 1px solid rgba(255,255,255,.15);
-        border-radius: 14px;
-      }
-      .nav-links.open { display: flex; }
-      .nav-links a { padding: 13px 10px; }
-      .nav-cta { display: none; }
-      .hero-content { min-height: 560px; align-items: flex-end; }
-      .hero-copy { padding: 0 0 70px; max-width: 390px; }
-      .hero-copy p { max-width: 290px; }
-      .profile-photo { width: 112px; height: 112px; margin-bottom: 18px; }
-      .collection { padding: 60px 5% 68px; }
-      .product-grid { grid-template-columns: 1fr; gap: 30px; max-width: 430px; margin: auto; }
-      .product-image { aspect-ratio: 1 / .75; }
-      .feature { padding: 55px 5%; }
-      .feature-inner { grid-template-columns: 1fr; gap: 28px; }
-      .feature-photo, .feature-photo img { min-height: 260px; }
-      .footer-inner { flex-direction: column; text-align: center; }
-    }
-    @media (min-width: 540px) and (max-width: 760px) {
-      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-
-
-    /* Tabela de serviços e manutenções */
-    .price-section {
-      position: relative;
-      overflow: hidden;
-      padding: 76px 5% 64px;
-      background:
-        radial-gradient(ellipse at 12% 20%, rgba(222, 151, 162, .16), transparent 38%),
-        radial-gradient(ellipse at 90% 72%, rgba(222, 151, 162, .13), transparent 35%),
-        #fff8f5;
-      color: #3f3c3c;
-    }
-    .price-section .section-kicker {
-      color: #b64f67;
-      text-transform: uppercase;
-      letter-spacing: .28em;
-      font-size: 11px;
-    }
-    .price-section h2 { color: #481520; }
-    .price-section .section-intro { color: #6f5658; max-width: 620px; margin-left: auto; margin-right: auto; }
-    .service-panels {
+    .services-grid {
       display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 22px;
-      max-width: 1050px;
-      margin: 38px auto 0;
-      text-align: left;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
     }
-    .service-panel {
+
+    .service-card {
+      position: relative;
       min-width: 0;
-      padding: 0 28px 25px;
-      border: 1px solid #edc7cc;
-      border-radius: 28px;
-      background: rgba(255,255,255,.48);
-      box-shadow: 0 12px 40px rgba(95, 36, 48, .045);
+      padding: 23px 20px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: rgba(255,255,255,.82);
+      box-shadow: 0 9px 30px rgba(95,36,48,.035);
+      transition: border-color .2s, transform .2s, box-shadow .2s;
     }
-    .service-heading {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      min-height: 88px;
-      margin: 0 -10px 14px;
+
+    .service-card:hover {
+      transform: translateY(-3px);
+      border-color: #c98291;
+      box-shadow: var(--shadow);
     }
-    .service-icon {
+
+    .service-card.selected {
+      border: 2px solid var(--wine);
+      background: #fff7f8;
+      box-shadow: 0 8px 25px rgba(118,23,46,.09);
+    }
+
+    .service-card.selected::after {
+      content: "✓ Selecionado";
+      position: absolute;
+      top: 13px;
+      right: 12px;
+      color: var(--wine);
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .service-symbol {
       display: grid;
       place-items: center;
-      flex: 0 0 58px;
-      width: 58px;
-      height: 58px;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 17px;
       border-radius: 50%;
-      color: white;
-      background: #91334b;
-      box-shadow: 0 0 0 9px #f7e1e3;
-      font-size: 32px;
-      line-height: 1;
+      background: var(--pink-soft);
+      color: var(--wine);
+      font-size: 23px;
     }
-    .service-heading h3 {
-      color: #524c4d;
-      font: 700 18px/1.2 'DM Sans', sans-serif;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      white-space: nowrap;
+
+    .service-card h3 {
+      margin-bottom: 7px;
+      color: #481520;
+      font-size: 21px;
     }
-    .heading-line { height: 1px; flex: 1; background: #c46a7d; }
-    .service-list { list-style: none; }
-    .service-list li {
+
+    .service-card p {
+      min-height: 40px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .service-bottom {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
-      min-height: 62px;
-      padding: 13px 0;
-      border-bottom: 1px solid #ebd1d1;
-      font-size: 16px;
-      line-height: 1.35;
+      gap: 8px;
+      margin-top: 18px;
+      padding-top: 15px;
+      border-top: 1px solid #f0dfe1;
     }
-    .service-list li:last-child { border-bottom: 0; }
-    .service-list li > span { max-width: 78%; }
-    .service-list small { display: block; font-size: 12px; margin-top: 2px; }
-    .service-list strong {
-      flex: 0 0 auto;
-      border-radius: 999px;
-      padding: 7px 13px;
-      color: #571927;
-      background: #f4cbd0;
-      font-size: 16px;
+
+    .service-price {
+      color: var(--wine);
+      font-size: 19px;
       font-weight: 700;
       white-space: nowrap;
     }
-    .maintenance-list li { min-height: 112px; gap: 10px; }
-    .maintenance-list li > span { max-width: 65%; }
-    .service-note {
-      margin: 35px 0 48px;
-      text-align: center;
-      font: italic 28px/1.2 'Playfair Display', serif;
-      color: #5b202d;
-      transform: rotate(-4deg);
-    }
-    .service-note span { color: #a33e58; font-size: 30px; }
-    .service-values { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: auto; }
-    .service-values div { display: flex; flex-direction: column; align-items: center; gap: 7px; text-align: center; padding: 0 8px; }
-    .service-values div + div { border-left: 1px solid #e7c7cb; }
-    .service-values span { font-size: 25px; color: #662333; }
-    .service-values small { font-size: 10px; line-height: 1.5; text-transform: uppercase; letter-spacing: .04em; }
-    .service-thanks { text-align: center; margin: 38px auto 0; color: #7b3043; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
-    .service-thanks span { padding: 0 10px; color: #bd5c75; font-size: 19px; }
-    @media (max-width: 720px) {
-      .price-section { padding: 58px 5% 48px; }
-      .service-panels { grid-template-columns: 1fr; gap: 18px; margin-top: 28px; }
-      .service-panel { padding: 0 19px 23px; border-radius: 22px; }
-      .service-heading { gap: 13px; min-height: 80px; }
-      .service-icon { flex-basis: 48px; width: 48px; height: 48px; font-size: 27px; }
-      .service-heading h3 { font-size: 15px; letter-spacing: .12em; }
-      .service-list li { font-size: 15px; }
-      .service-list strong { font-size: 14px; padding: 7px 11px; }
-      .maintenance-list li { min-height: 86px; }
-      .service-note { margin: 25px 0 34px; font-size: 25px; }
-      .service-values small { font-size: 9px; }
-    }
-    @media (max-width: 380px) {
-      .service-heading h3 { font-size: 13px; }
-      .service-panel { padding-left: 14px; padding-right: 14px; }
-      .service-list li { font-size: 14px; }
+
+    .select-service {
+      padding: 8px 11px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: white;
+      color: var(--wine);
+      font-size: 10px;
+      font-weight: 700;
+      white-space: nowrap;
     }
 
+    .service-card.selected .select-service {
+      background: var(--wine);
+      color: white;
+      border-color: var(--wine);
+    }
+
+    .maintenance-title {
+      margin: 36px 0 18px;
+      color: #481520;
+      font: 600 26px "Playfair Display", serif;
+      text-align: center;
+    }
+
+    .maintenance-note {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    /* Formulário */
+
+    .booking-section {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 90% 10%, rgba(222,151,162,.16), transparent 32%),
+        #f8eeeb;
+    }
+
+    .booking-layout {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .booking-aside {
+      position: sticky;
+      top: 20px;
+      padding: 30px 25px;
+      border-radius: 24px;
+      background: linear-gradient(150deg, #571427, #2a1018);
+      color: white;
+      overflow: hidden;
+    }
+
+    .booking-aside .aside-symbol {
+      color: var(--pink);
+      font-size: 42px;
+      line-height: 1;
+      margin-bottom: 22px;
+    }
+
+    .booking-aside h3 {
+      font-size: 29px;
+      line-height: 1.2;
+    }
+
+    .booking-aside p {
+      margin-top: 15px;
+      color: rgba(255,255,255,.73);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .aside-list {
+      list-style: none;
+      margin-top: 25px;
+    }
+
+    .aside-list li {
+      display: flex;
+      gap: 10px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.87);
+      font-size: 12px;
+    }
+
+    .aside-list li span {
+      color: var(--pink);
+    }
+
+    .booking-form {
+      min-width: 0;
+      padding: clamp(20px, 4vw, 36px);
+      border: 1px solid #ecd4d5;
+      border-radius: 24px;
+      background: rgba(255,255,255,.94);
+      box-shadow: var(--shadow);
+    }
+
+    .form-heading {
+      margin-bottom: 25px;
+    }
+
+    .form-heading h3 {
+      color: #481520;
+      font-size: 29px;
+    }
+
+    .form-heading p {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 19px 16px;
+    }
+
+    .field {
+      min-width: 0;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      color: #4c3538;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .field label .required {
+      color: var(--wine-light);
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      display: block;
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 13px;
+      border: 1px solid #e4ced0;
+      border-radius: 11px;
+      outline: none;
+      background: #fffdfc;
+      color: var(--ink);
+      font-size: 13px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .field textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--wine-light);
+      box-shadow: 0 0 0 3px rgba(165,44,73,.09);
+    }
+
+    .field input:disabled,
+    .field select:disabled {
+      background: #f4eeee;
+      color: #8e8384;
+      cursor: not-allowed;
+    }
+
+    .field-hint {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      margin-top: 22px;
+      padding: 14px;
+      border: 1px solid #efd5d9;
+      border-radius: 12px;
+      background: #fff5f6;
+      color: #663141;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .notice strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 19px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .consent input {
+      flex: 0 0 auto;
+      width: 16px;
+      height: 16px;
+      margin-top: 3px;
+      accent-color: var(--wine);
+    }
+
+    .submit-button {
+      width: 100%;
+      min-height: 54px;
+      margin-top: 23px;
+      border-radius: 12px;
+      font-size: 11px;
+    }
+
+    .submit-button:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-message {
+      display: none;
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .form-message.error {
+      display: block;
+      background: #fff0f0;
+      color: #9a2638;
+      border: 1px solid #f0c9ce;
+    }
+
+    .form-message.success {
+      display: block;
+      background: #f0f8f0;
+      color: #245d37;
+      border: 1px solid #c8e5ce;
+    }
+
+    /* Informações */
+
+    .info-section {
+      padding: 60px 5%;
+      background: var(--cream);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .info-card {
+      padding: 23px 18px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      text-align: center;
+      background: white;
+    }
+
+    .info-card .info-icon {
+      margin-bottom: 10px;
+      color: var(--wine);
+      font-size: 27px;
+    }
+
+    .info-card h3 {
+      margin-bottom: 6px;
+      color: #481520;
+      font-size: 20px;
+    }
+
+    .info-card p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    footer {
+      padding: 30px 5%;
+      background: #28151a;
+      color: white;
+    }
+
+    .footer-inner {
+      width: min(1050px, 100%);
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    footer p {
+      color: rgba(255,255,255,.63);
+      font-size: 11px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 17px;
+      font-size: 11px;
+      color: rgba(255,255,255,.8);
+    }
+
+    .footer-links a:hover {
+      color: var(--pink);
+    }
+
+    @media (max-width: 850px) {
+      .nav-links {
+        gap: 13px;
+      }
+
+      .nav-links a {
+        font-size: 10px;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .booking-layout {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .booking-aside {
+        position: static;
+      }
+
+      .aside-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 15px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .hero {
+        min-height: 420px;
+      }
+
+      .navbar {
+        min-height: 75px;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      .menu-toggle {
+        display: block;
+        position: relative;
+        z-index: 5;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        right: 0;
+        z-index: 4;
+        padding: 10px;
+        border: 1px solid rgba(255,255,255,.15);
+        border-radius: 14px;
+        background: rgba(35,18,24,.98);
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      .nav-links a {
+        padding: 13px 10px;
+        font-size: 11px;
+      }
+
+      .hero-content {
+        min-height: 325px;
+        align-items: center;
+        padding: 25px 0 45px;
+      }
+
+      .hero-copy p {
+        font-size: 13px;
+      }
+
+      .section {
+        padding: 55px 5%;
+      }
+
+      .services-grid {
+        gap: 12px;
+      }
+
+      .service-card {
+        padding: 17px 13px;
+        border-radius: 16px;
+      }
+
+      .service-card h3 {
+        font-size: 18px;
+      }
+
+      .service-card p {
+        min-height: 54px;
+        font-size: 11px;
+      }
+
+      .service-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .service-price {
+        font-size: 18px;
+      }
+
+      .select-service {
+        width: 100%;
+      }
+
+      .service-card.selected::after {
+        position: static;
+        display: block;
+        margin: -7px 0 12px;
+      }
+
+      .booking-form {
+        padding: 21px 16px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .info-card {
+        padding: 20px 16px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-links {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card p {
+        min-height: auto;
+      }
+
+      .service-bottom {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .select-service {
+        width: auto;
+      }
+
+      .aside-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        transition-duration: .01ms !important;
+      }
+    }
   </style>
 </head>
+
 <body>
   <header class="hero" id="inicio">
     <nav class="navbar" aria-label="Navegação principal">
-      <a class="logo" href="#inicio" aria-label="Cozy Winter início"><span></span></a>
-      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">Menu ☰</button>
+      <a class="logo" href="#inicio">
+        Raquel Salazar
+        <span>Nail Designer</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="navLinks">
+        Menu ☰
+      </button>
+
       <div class="nav-links" id="navLinks">
-        <a href="#colecao">Coleção</a>
-        <a href="#destaque">Novidades</a>
-        <a href="#colecao">Unhas</a>
-        <a href="#galeria">Galeria</a>
-        <a href="#destaque">Sobre</a>
+        <a href="#inicio">Início</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#agendar">Agendamento</a>
+        <a href="#informacoes">Informações</a>
       </div>
-      <a class="nav-cta" href="#colecao">Descobrir a coleção ↗</a>
+
+      <a class="nav-cta" href="#agendar">Agendar agora ↗</a>
     </nav>
 
     <div class="hero-content">
       <div class="hero-copy">
-        <span class="eyebrow">Transforme Unhas Em Autoestima</span>
-        <img class="profile-photo" src="753381996_18094492793576649_2507489137348182838_n.jpg" alt="Foto de perfil de Raquel Salazar">
-        <h1>Raquel Salazar<br>Nail Designer</h1>
-        <p>Detalhes delicados, tons profundos e acabamentos elegantes para transformar suas unhas em um acessório cheio de personalidade.</p>
-        <a class="button outline" href="#colecao">Explorar coleção</a>
+        <span class="eyebrow">Seu momento de autocuidado</span>
+        <h1>Suas unhas,<br>seu momento <span class="hero-heart">♡</span></h1>
+        <p>
+          Realce sua beleza com delicadeza, elegância e cuidado
+          em cada detalhe. Escolha seu serviço e solicite seu
+          horário de atendimento.
+        </p>
+        <a class="button" href="#agendar">Solicitar agendamento ↗</a>
       </div>
     </div>
   </header>
 
   <main>
-    <section class="collection price-section" id="colecao">
+    <section class="section services-section" id="servicos">
       <div class="section-inner">
-        <p class="section-kicker">Feita para brilhar</p>
-        <h2>Serviços &amp; Manutenções</h2>
-        <p class="section-intro">Seu momento de cuidado, beleza e autoestima. Confira os serviços e valores.</p>
-
-        <div class="service-panels">
-          <article class="service-panel">
-            <div class="service-heading">
-              <span class="service-icon" aria-hidden="true">♧</span>
-              <h3>Serviços</h3>
-              <span class="heading-line"></span>
-            </div>
-            <ul class="service-list">
-              <li><span>Molde F1</span><strong>R$ 90</strong></li>
-              <li><span>Gel na tips</span><strong>R$ 100</strong></li>
-              <li><span>Mão e pé tradicional <small>(valor normal)</small></span><strong>R$ 50</strong></li>
-              <li><span>Pé</span><strong>R$ 30</strong></li>
-              <li><span>Mão</span><strong>R$ 30</strong></li>
-              <li><span>Postiça realista</span><strong>R$ 50</strong></li>
-              <li><span>Banho de gel</span><strong>R$ 70</strong></li>
-            </ul>
-          </article>
-
-          <article class="service-panel maintenance-panel">
-            <div class="service-heading">
-              <span class="service-icon" aria-hidden="true">⟳</span>
-              <h3>Manutenções</h3>
-              <span class="heading-line"></span>
-            </div>
-            <ul class="service-list maintenance-list">
-              <li><span>Manutenção de molde F1</span><strong>R$ 80</strong></li>
-              <li><span>Manutenção de banho de gel</span><strong>R$ 60</strong></li>
-            </ul>
-            <p class="service-note">Qualquer dúvida<br>é só chamar! <span>♡</span></p>
-            <div class="service-values">
-              <div><span>♡</span><small>Unhas<br>bem feitas</small></div>
-              <div><span>✧</span><small>Higiene<br>e segurança</small></div>
-              <div><span>❀</span><small>Beleza<br>e autoestima</small></div>
-            </div>
-          </article>
+        <div class="section-heading">
+          <p class="section-kicker">Beleza em cada detalhe</p>
+          <h2>Nossos serviços</h2>
+          <p class="section-intro">
+            Escolha seu cuidado favorito. Selecione um serviço
+            para preencher automaticamente o formulário de agendamento.
+          </p>
         </div>
-        <p class="service-thanks"><span>♡</span> Obrigada pelo carinho e pela confiança de sempre! <span>♡</span></p>
+
+        <div class="services-grid" id="servicesGrid"></div>
+
+        <h3 class="maintenance-title">Manutenções</h3>
+        <div class="services-grid" id="maintenanceGrid"></div>
+
+        <p class="maintenance-note">
+          Os valores estão sujeitos a confirmação no momento do atendimento. ♡
+        </p>
       </div>
     </section>
 
-
-    <section class="carousel-section" id="galeria">
+    <section class="section booking-section" id="agendar">
       <div class="section-inner">
-        <p class="section-kicker">Galeria em movimento</p>
-        <h2>Explore os estilos</h2>
-        <p class="carousel-intro">Arraste para girar a seleção e descubra inspirações de unhas em diferentes cores, acabamentos e detalhes.</p>
-        <div class="circular-carousel" id="circularCarousel" role="region" aria-label="Carrossel circular de estilos de unhas" tabindex="0">
-          <div class="cc-stage"><div class="cc-ring" id="ccRing"></div></div>
+        <div class="section-heading">
+          <p class="section-kicker">Reserve seu momento</p>
+          <h2>Agende seu horário</h2>
+          <p class="section-intro">
+            Preencha seus dados e envie sua solicitação diretamente
+            para o WhatsApp da Raquel.
+          </p>
         </div>
-        <div class="cc-caption" aria-live="polite"><strong id="ccTitle">Ruby Bloom</strong><span id="ccSubtitle">01 / 08</span></div>
-        <div class="cc-controls" aria-label="Controles do carrossel">
-          <button type="button" id="ccPrev" aria-label="Estilo anterior">←</button>
-          <span class="cc-count">ARRASTE PARA EXPLORAR</span>
-          <button type="button" id="ccNext" aria-label="Próximo estilo">→</button>
+
+        <div class="booking-layout">
+          <aside class="booking-aside">
+            <div class="aside-symbol">✿</div>
+            <h3>Um momento só seu.</h3>
+            <p>
+              Será um prazer cuidar das suas unhas!
+              Escolha o serviço, informe sua preferência de horário
+              e aguarde a confirmação.
+            </p>
+
+            <ul class="aside-list">
+              <li><span>♡</span> Atendimento personalizado</li>
+              <li><span>✧</span> Cuidado em cada detalhe</li>
+              <li><span>❀</span> Beleza e autoestima</li>
+              <li><span>✓</span> Confirmação pelo WhatsApp</li>
+            </ul>
+          </aside>
+
+          <form class="booking-form" id="bookingForm">
+            <div class="form-heading">
+              <h3>Seus dados</h3>
+              <p>Os campos com * são obrigatórios.</p>
+            </div>
+
+            <div class="form-grid">
+              <div class="field full">
+                <label for="customerName">Nome completo <span class="required">*</span></label>
+                <input
+                  id="customerName"
+                  name="customerName"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="Como podemos te chamar?"
+                  maxlength="100"
+                  required>
+              </div>
+
+              <div class="field full">
+                <label for="customerPhone">Seu WhatsApp <span class="required">*</span></label>
+                <input
+                  id="customerPhone"
+                  name="customerPhone"
+                  type="tel"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  placeholder="(21) 99999-9999"
+                  maxlength="20"
+                  required>
+              </div>
+
+              <div class="field full">
+                <label for="service">Serviço desejado <span class="required">*</span></label>
+                <select id="service" name="service" required>
+                  <option value="">Selecione um serviço</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="appointmentDate">Data desejada <span class="required">*</span></label>
+                <input
+                  id="appointmentDate"
+                  name="appointmentDate"
+                  type="date"
+                  required>
+                <small class="field-hint">Escolha um dia de atendimento.</small>
+              </div>
+
+              <div class="field">
+                <label for="appointmentTime">Horário desejado <span class="required">*</span></label>
+                <select id="appointmentTime" name="appointmentTime" required disabled>
+                  <option value="">Escolha a data primeiro</option>
+                </select>
+                <small class="field-hint" id="timeHint">
+                  Os horários dependem do dia escolhido.
+                </small>
+              </div>
+
+              <div class="field full">
+                <label for="notes">Observações (opcional)</label>
+                <textarea
+                  id="notes"
+                  name="notes"
+                  maxlength="500"
+                  placeholder="Conte se tem alguma preferência ou dúvida..."></textarea>
+              </div>
+            </div>
+
+            <div class="notice">
+              <span aria-hidden="true">♡</span>
+              <div>
+                <strong>Importante: seu horário ainda não está confirmado.</strong>
+                Esta é uma solicitação de agendamento. A Raquel verificará
+                a disponibilidade e confirmará o atendimento pelo WhatsApp.
+              </div>
+            </div>
+
+            <label class="consent">
+              <input id="consent" type="checkbox" required>
+              <span>
+                Autorizo o uso dos dados informados para entrar em contato
+                comigo sobre este agendamento.
+              </span>
+            </label>
+
+            <button class="button submit-button" id="submitButton" type="submit">
+              Enviar solicitação pelo WhatsApp ↗
+            </button>
+
+            <div class="form-message" id="formMessage" role="status" aria-live="polite"></div>
+          </form>
         </div>
       </div>
     </section>
 
-    <section class="feature" id="destaque">
-      <div class="feature-inner">
-        <div class="feature-photo">
-          <img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=1200&q=85" alt="Detalhe de manicure elegante" loading="lazy">
+    <section class="info-section" id="informacoes">
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="section-kicker">Antes de agendar</p>
+          <h2>Informações importantes</h2>
         </div>
-        <div class="feature-copy">
-          <p class="section-kicker">O detalhe faz a diferença</p>
-          <h2>Seu estilo.<br>Suas regras.</h2>
-          <p>Uma coleção criada para combinar com dias frios, ocasiões especiais e todos os momentos em que você quer expressar sua personalidade. Escolha seu tom favorito e crie uma combinação só sua.</p>
-          <a class="button" href="#colecao">Ver estilos</a>
+
+        <div class="info-grid">
+          <article class="info-card">
+            <div class="info-icon">♡</div>
+            <h3>Confirmação</h3>
+            <p>
+              O pedido será enviado pelo WhatsApp.
+              Aguarde a confirmação da profissional antes de considerar
+              o horário reservado.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-icon">◷</div>
+            <h3>Horários</h3>
+            <p>
+              Os horários exibidos são sugestões configuradas pela
+              profissional. A disponibilidade precisa ser confirmada.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-icon">✧</div>
+            <h3>Precisa de ajuda?</h3>
+            <p>
+              Envie sua dúvida pelo WhatsApp antes de solicitar
+              seu atendimento.
+            </p>
+          </article>
         </div>
       </div>
     </section>
@@ -485,78 +1134,405 @@
 
   <footer>
     <div class="footer-inner">
-      <a class="logo" href="#inicio"><span></span></a>
-      <p>© 2026 by pablo freitas dev for Raquel Salazar.</p>
+      <a class="logo" href="#inicio">
+        Raquel Salazar
+        <span>Nail Designer</span>
+      </a>
+
+      <p>© <span id="currentYear"></span> Raquel Salazar. Todos os direitos reservados.</p>
+
       <div class="footer-links">
-        <a href="#colecao">Coleção</a>
-        <a href="#galeria">Galeria</a>
-        <a href="#destaque">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#agendar">Agendamento</a>
         <a href="#inicio">Voltar ao topo ↑</a>
       </div>
     </div>
   </footer>
 
   <script>
+    /*
+    =========================================================
+    CONFIGURAÇÕES DA RAQUEL — EDITE ESTA PARTE
+    =========================================================
 
+    1. Troque o WhatsApp pelo número da profissional.
+       Use código do país + DDD + número, somente números.
+       Exemplo ilustrativo: 5521999999999
 
-    // Carrossel circular 3D: arrastar, autoplay, foco por clique e navegação por teclado.
-    (() => {
-      const root = document.getElementById('circularCarousel');
-      const ring = document.getElementById('ccRing');
-      if (!root || !ring) return;
-      const items = [
-        { title: 'Ruby Bloom', subtitle: 'Vinho floral', src: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=700&q=85', alt: 'Manicure em tons de vinho' },
-        { title: 'Midnight Spark', subtitle: 'Preto cintilante', src: 'https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=700&q=85', alt: 'Unhas escuras com brilho' },
-        { title: 'Velvet Plum', subtitle: 'Roxo sofisticado', src: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=700&q=85', alt: 'Unhas roxas elegantes' },
-        { title: 'Rose Elegance', subtitle: 'Rosa delicado', src: 'https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=700&q=85&sat=-15', alt: 'Manicure delicada' },
-        { title: 'Classic Red', subtitle: 'Vermelho clássico', src: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=700&q=85&sat=15', alt: 'Unhas vermelhas' },
-        { title: 'Silver Night', subtitle: 'Brilho prateado', src: 'https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=700&q=85&sat=-50', alt: 'Unhas escuras e brilhantes' },
-        { title: 'Soft Nude', subtitle: 'Natural e elegante', src: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=700&q=85&sat=-25', alt: 'Unhas em tons suaves' },
-        { title: 'Winter Bloom', subtitle: 'Detalhes florais', src: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=700&q=85&sat=-10', alt: 'Inspiração floral para unhas' }
-      ];
-      const cards = [];
-      let angle = 0, velocity = -0.006, dragging = false, lastX = 0, lastTime = 0, active = 0;
-      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      items.forEach((item, index) => {
-        const card = document.createElement('button');
-        card.type = 'button'; card.className = 'cc-card';
-        card.setAttribute('aria-label', 'Ver ' + item.title);
-        card.innerHTML = `<img src="${item.src}" alt="${item.alt}" loading="lazy"><span class="cc-card-title">${item.title}</span>`;
-        card.addEventListener('click', () => { active = index; angle = -index * 360 / items.length; updateCaption(); });
-        ring.appendChild(card); cards.push(card);
+    2. Configure os dias e horários em workingHours.
+       Domingo = 0, segunda = 1, terça = 2, quarta = 3,
+       quinta = 4, sexta = 5, sábado = 6.
+
+    3. Os horários são sugestões para solicitação manual.
+       Este site não verifica compromissos já marcados.
+    */
+
+    const CONFIG = {
+      whatsapp: "5521985791820",
+
+     workingHours: {
+  0: [], // Domingo: fechado
+   1: ["09:00", "10:30", "13:00", "14:30", "16:00"], // Segunda
+  2: ["09:00", "10:30", "13:00", "14:30", "16:00"], // Terça
+  3: [], // Quarta: fechado
+  4: ["07:00", "08:30", "10:00", "12:30", "14:00", "15:30"], // Quinta
+  5: ["07:00", "08:30", "10:00", "12:30", "14:00", "15:30"], // Sexta
+  6: ["07:00", "08:30", "10:00", "12:30", "14:00", "15:30"]  // Sábado
+},
+
+      maxDaysAhead: 90
+    };
+
+    const services = [
+      {
+        name: "Molde F1",
+        price: 90,
+        description: "Alongamento com acabamento elegante.",
+        symbol: "✧",
+        category: "service"
+      },
+      {
+        name: "Gel na tips",
+        price: 100,
+        description: "Alongamento com tips e acabamento em gel.",
+        symbol: "♡",
+        category: "service"
+      },
+      {
+        name: "Mão e pé tradicional",
+        price: 50,
+        description: "Cuidados tradicionais para mãos e pés.",
+        symbol: "❀",
+        category: "service"
+      },
+      {
+        name: "Pé",
+        price: 30,
+        description: "Cuidado e beleza para os pés.",
+        symbol: "✿",
+        category: "service"
+      },
+      {
+        name: "Mão",
+        price: 30,
+        description: "Cuidado tradicional para as unhas das mãos.",
+        symbol: "♡",
+        category: "service"
+      },
+      {
+        name: "Postiça realista",
+        price: 50,
+        description: "Visual delicado e natural.",
+        symbol: "✧",
+        category: "service"
+      },
+      {
+        name: "Banho de gel",
+        price: 70,
+        description: "Reforço e brilho para as unhas naturais.",
+        symbol: "❀",
+        category: "service"
+      },
+      {
+        name: "Manutenção de molde F1",
+        price: 80,
+        description: "Manutenção do alongamento em molde F1.",
+        symbol: "⟳",
+        category: "maintenance"
+      },
+      {
+        name: "Manutenção de banho de gel",
+        price: 60,
+        description: "Manutenção do banho de gel.",
+        symbol: "⟳",
+        category: "maintenance"
+      }
+    ];
+
+    const serviceSelect = document.getElementById("service");
+    const dateInput = document.getElementById("appointmentDate");
+    const timeSelect = document.getElementById("appointmentTime");
+    const timeHint = document.getElementById("timeHint");
+    const form = document.getElementById("bookingForm");
+    const formMessage = document.getElementById("formMessage");
+    const submitButton = document.getElementById("submitButton");
+
+    const brl = new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+      maximumFractionDigits: 2
+    });
+
+    function formatDateLocal(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    function parseLocalDate(value) {
+      const [year, month, day] = value.split("-").map(Number);
+      return new Date(year, month - 1, day);
+    }
+
+    function formatDateBR(value) {
+      return parseLocalDate(value).toLocaleDateString("pt-BR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
       });
-      function layout() {
-        const mobile = window.innerWidth <= 700;
-        const width = mobile ? 165 : 220;
-        const radius = Math.max(width * 1.15, (width + 26) / (2 * Math.sin(Math.PI / items.length)));
-        cards.forEach((card, i) => { card.style.transform = `rotateY(${i * 360 / items.length}deg) translateZ(${radius}px)`; });
-        ring.dataset.radius = radius;
-      }
-      function updateCaption() {
-        const normalized = ((Math.round(-angle / (360 / items.length)) % items.length) + items.length) % items.length;
-        active = normalized;
-        document.getElementById('ccTitle').textContent = items[active].title;
-        document.getElementById('ccSubtitle').textContent = `${String(active + 1).padStart(2,'0')} / ${String(items.length).padStart(2,'0')} · ${items[active].subtitle}`;
-      }
-      function frame() {
-        if (!dragging && !reducedMotion) angle += velocity;
-        ring.style.transform = `rotateY(${angle}deg)`;
-        updateCaption();
-        requestAnimationFrame(frame);
-      }
-      function moveTo(delta) { angle = -(active + delta) * 360 / items.length; velocity = 0; updateCaption(); }
-      document.getElementById('ccPrev').addEventListener('click', () => moveTo(-1));
-      document.getElementById('ccNext').addEventListener('click', () => moveTo(1));
-      root.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; lastTime = performance.now(); velocity = 0; root.classList.add('is-dragging'); root.setPointerCapture?.(e.pointerId); });
-      root.addEventListener('pointermove', e => { if (!dragging) return; const now = performance.now(); const dx = e.clientX - lastX; angle += dx * 0.38; velocity = dx * 0.025; lastX = e.clientX; lastTime = now; });
-      const endDrag = () => { dragging = false; root.classList.remove('is-dragging'); velocity = Math.max(-0.12, Math.min(0.12, velocity)); };
-      root.addEventListener('pointerup', endDrag); root.addEventListener('pointercancel', endDrag); root.addEventListener('pointerleave', endDrag);
-      root.addEventListener('keydown', e => { if (e.key === 'ArrowRight') { moveTo(1); e.preventDefault(); } if (e.key === 'ArrowLeft') { moveTo(-1); e.preventDefault(); } });
-      window.addEventListener('resize', layout);
-      layout(); updateCaption(); requestAnimationFrame(frame);
-    })();
+    }
 
+    function showMessage(message, type) {
+      formMessage.textContent = message;
+      formMessage.className = "form-message " + type;
+    }
 
+    function clearMessage() {
+      formMessage.textContent = "";
+      formMessage.className = "form-message";
+    }
+
+    function renderServices(category, containerId) {
+      const container = document.getElementById(containerId);
+
+      services
+        .filter(item => item.category === category)
+        .forEach(item => {
+          const card = document.createElement("article");
+          card.className = "service-card";
+
+          const symbol = document.createElement("div");
+          symbol.className = "service-symbol";
+          symbol.textContent = item.symbol;
+
+          const title = document.createElement("h3");
+          title.textContent = item.name;
+
+          const description = document.createElement("p");
+          description.textContent = item.description;
+
+          const bottom = document.createElement("div");
+          bottom.className = "service-bottom";
+
+          const price = document.createElement("span");
+          price.className = "service-price";
+          price.textContent = brl.format(item.price);
+
+          const button = document.createElement("button");
+          button.className = "select-service";
+          button.type = "button";
+          button.textContent = "Escolher";
+
+          button.addEventListener("click", () => {
+            serviceSelect.value = item.name;
+            updateSelectedCards();
+            document.getElementById("agendar").scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+          });
+
+          bottom.append(price, button);
+          card.append(symbol, title, description, bottom);
+          container.appendChild(card);
+        });
+    }
+
+    function populateServiceSelect() {
+      services.forEach(item => {
+        const option = document.createElement("option");
+        option.value = item.name;
+        option.textContent = `${item.name} — ${brl.format(item.price)}`;
+        serviceSelect.appendChild(option);
+      });
+    }
+
+    function updateSelectedCards() {
+      document.querySelectorAll(".service-card").forEach(card => {
+        const title = card.querySelector("h3");
+        const button = card.querySelector(".select-service");
+        const selected = title.textContent === serviceSelect.value;
+
+        card.classList.toggle("selected", selected);
+        button.textContent = selected ? "Selecionado ✓" : "Escolher";
+        button.setAttribute("aria-pressed", String(selected));
+      });
+    }
+
+    function updateAvailableTimes() {
+      clearMessage();
+      timeSelect.replaceChildren();
+
+      if (!dateInput.value) {
+        timeSelect.add(new Option("Escolha a data primeiro", ""));
+        timeSelect.disabled = true;
+        timeHint.textContent = "Os horários dependem do dia escolhido.";
+        return;
+      }
+
+      const selectedDate = parseLocalDate(dateInput.value);
+      const day = selectedDate.getDay();
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      const maxDate = new Date(today);
+      maxDate.setDate(maxDate.getDate() + CONFIG.maxDaysAhead);
+
+      if (selectedDate < today || selectedDate > maxDate) {
+        timeSelect.add(new Option("Data fora do período", ""));
+        timeSelect.disabled = true;
+        timeHint.textContent = "Escolha uma data dentro do período permitido.";
+        return;
+      }
+
+      const times = CONFIG.workingHours[day] || [];
+
+      if (!times.length) {
+        timeSelect.add(new Option("Dia sem atendimento", ""));
+        timeSelect.disabled = true;
+        timeHint.textContent = "A Raquel não atende neste dia. Escolha outra data.";
+        return;
+      }
+
+      const now = new Date();
+      const isToday = formatDateLocal(today) === dateInput.value;
+
+      const availableSuggestions = times.filter(time => {
+        if (!isToday) return true;
+
+        const [hour, minute] = time.split(":").map(Number);
+        const slot = new Date();
+        slot.setHours(hour, minute, 0, 0);
+
+        return slot > now;
+      });
+
+      if (!availableSuggestions.length) {
+        timeSelect.add(new Option("Sem horários restantes hoje", ""));
+        timeSelect.disabled = true;
+        timeHint.textContent = "Escolha outra data para solicitar atendimento.";
+        return;
+      }
+
+      timeSelect.add(new Option("Selecione um horário", ""));
+      availableSuggestions.forEach(time => {
+        timeSelect.add(new Option(time, time));
+      });
+
+      timeSelect.disabled = false;
+      timeHint.textContent =
+        "Horários sugeridos. A disponibilidade será confirmada pela Raquel.";
+    }
+
+    function configureDateLimits() {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      const maxDate = new Date(today);
+      maxDate.setDate(maxDate.getDate() + CONFIG.maxDaysAhead);
+
+      dateInput.min = formatDateLocal(today);
+      dateInput.max = formatDateLocal(maxDate);
+    }
+
+    function validWhatsAppNumber(number) {
+      // Número internacional com DDI, DDD e telefone.
+      return /^\d{12,13}$/.test(number);
+    }
+
+    function submitBooking(event) {
+      event.preventDefault();
+      clearMessage();
+
+      if (!form.reportValidity()) return;
+
+      if (!validWhatsAppNumber(CONFIG.whatsapp)) {
+        showMessage(
+          "O WhatsApp da profissional ainda não foi configurado. Atualize o número na seção CONFIGURAÇÕES do código.",
+          "error"
+        );
+        return;
+      }
+
+      if (!serviceSelect.value || !dateInput.value || !timeSelect.value) {
+        showMessage("Selecione o serviço, a data e o horário desejados.", "error");
+        return;
+      }
+
+      const date = parseLocalDate(dateInput.value);
+      const times = CONFIG.workingHours[date.getDay()] || [];
+
+      if (!times.includes(timeSelect.value)) {
+        showMessage(
+          "Esse horário não faz parte dos horários configurados. Escolha outra opção.",
+          "error"
+        );
+        updateAvailableTimes();
+        return;
+      }
+
+      const service = services.find(item => item.name === serviceSelect.value);
+      if (!service) {
+        showMessage("Selecione um serviço válido.", "error");
+        return;
+      }
+
+      const name = document.getElementById("customerName").value.trim();
+      const phone = document.getElementById("customerPhone").value.trim();
+      const notes = document.getElementById("notes").value.trim();
+
+      if (name.length < 2) {
+        showMessage("Informe seu nome completo.", "error");
+        return;
+      }
+
+      const message = [
+        " *SOLICITAÇÃO DE AGENDAMENTO*",
+        "",
+        "Olá, Raquel! Gostaria de solicitar um horário.",
+        "",
+        " *Nome:* " + name,
+        " *WhatsApp da cliente:* " + phone,
+        " *Serviço:* " + service.name,
+        " *Valor informado:* " + brl.format(service.price),
+        " *Data desejada:* " + formatDateBR(dateInput.value),
+        " *Horário desejado:* " + timeSelect.value,
+        notes ? " *Observações:* " + notes : "",
+        "",
+        "Aguardo a confirmação da disponibilidade. Obrigada! ♡"
+      ].filter(Boolean).join("\n");
+
+      const whatsappURL =
+        "https://wa.me/" + CONFIG.whatsapp +
+        "?text=" + encodeURIComponent(message);
+
+      showMessage(
+        "Sua solicitação está pronta. O WhatsApp será aberto para você enviar a mensagem. O horário ainda dependerá da confirmação da Raquel.",
+        "success"
+      );
+
+      const newWindow = window.open(whatsappURL, "_blank", "noopener,noreferrer");
+
+      if (!newWindow) {
+        showMessage(
+          "O navegador bloqueou a abertura automática. Use o link abaixo para continuar no WhatsApp.",
+          "success"
+        );
+
+        const link = document.createElement("a");
+        link.href = whatsappURL;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = "Abrir WhatsApp e enviar solicitação ↗";
+        link.className = "button";
+        link.style.marginTop = "12px";
+        formMessage.appendChild(document.createElement("br"));
+        formMessage.appendChild(link);
+      }
+    }
+
+    // Menu para dispositivos móveis.
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
 
@@ -570,6 +1546,25 @@
         navLinks.classList.remove("open");
         menuToggle.setAttribute("aria-expanded", "false");
       });
+    });
+
+    // Inicialização da página.
+    renderServices("service", "servicesGrid");
+    renderServices("maintenance", "maintenanceGrid");
+    populateServiceSelect();
+    configureDateLimits();
+    updateAvailableTimes();
+
+    serviceSelect.addEventListener("change", updateSelectedCards);
+    dateInput.addEventListener("change", updateAvailableTimes);
+    form.addEventListener("submit", submitBooking);
+
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+
+    // Atualiza a lista caso a página permaneça aberta até outro dia.
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) updateAvailableTimes();
     });
   </script>
 </body>
