@@ -1,0 +1,570 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agenda | Raquel</title>
+  <meta name="theme-color" content="#701f3a">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root {
+      --wine: #701f3a;
+      --pink: #f4dce4;
+      --cream: #fffaf6;
+      --text: #38252c;
+      --muted: #826f76;
+      --border: #eadde1;
+      --green: #28734d;
+      --red: #a83248;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background: var(--wine);
+      color: white;
+      padding: 22px;
+    }
+
+    .header-inner, main {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+
+    header h1 {
+      margin: 0 0 6px;
+      font-family: Georgia, serif;
+      font-weight: normal;
+    }
+
+    header p { margin: 0; opacity: .85; }
+
+    main { padding: 28px 0 50px; }
+
+    .panel {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 25px #701f3a0a;
+    }
+
+    h2 { margin-top: 0; font-size: 21px; }
+
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      min-width: 0;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: white;
+      color: var(--text);
+      font: inherit;
+    }
+
+    button, .button {
+      display: inline-block;
+      padding: 10px 14px;
+      border: 0;
+      border-radius: 9px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .primary { background: var(--wine); color: white; }
+    .accept { background: #e0f3e7; color: #205c3d; }
+    .reject { background: #fae5e8; color: #982d42; }
+    .reschedule { background: var(--pink); color: var(--wine); }
+    .logout { background: white; color: var(--wine); }
+
+    .filters {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .stat {
+      background: var(--pink);
+      padding: 16px;
+      border-radius: 12px;
+    }
+
+    .stat span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .stat strong {
+      display: block;
+      margin-top: 7px;
+      font-size: 25px;
+    }
+
+    .appointment {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 17px;
+      margin-top: 12px;
+    }
+
+    .appointment h3 { margin: 0 0 8px; }
+
+    .details {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 30px;
+      font-size: 12px;
+      background: #eee;
+    }
+
+    .pending { background: #fff0cf; color: #785500; }
+    .confirmed { background: #dff4e7; color: #205c3d; }
+    .rejected { background: #fae5e8; color: #982d42; }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .hidden { display: none !important; }
+    .muted { color: var(--muted); }
+    #message { margin-top: 12px; font-size: 14px; }
+
+    @media (max-width: 600px) {
+      .filters { grid-template-columns: 1fr; }
+      .stats { gap: 7px; }
+      .stat { padding: 12px 8px; }
+      .stat strong { font-size: 21px; }
+      .panel { padding: 16px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <h1>Agenda da Raquel</h1>
+      <p>Área administrativa · Nail Designer</p>
+    </div>
+  </header>
+
+  <main>
+    <section id="loginPanel" class="panel">
+      <h2>Acesso administrativo</h2>
+      <p class="muted">Entre com seu e-mail e sua senha.</p>
+
+      <form id="loginForm">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" required autocomplete="username">
+
+        <label for="password">Senha</label>
+        <input id="password" type="password" required
+               autocomplete="current-password">
+
+        <br><br>
+        <button class="primary" type="submit">Entrar na agenda</button>
+      </form>
+      <p id="loginMessage" role="status"></p>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <div class="panel">
+        <div style="display:flex;justify-content:space-between;
+                    align-items:center;gap:12px;flex-wrap:wrap">
+          <div>
+            <h2 style="margin-bottom:5px">Seus agendamentos</h2>
+            <span class="muted">Solicitações sincronizadas com o banco de dados</span>
+          </div>
+          <button id="logoutBtn" class="logout">Sair</button>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <span>Pendentes</span>
+          <strong id="pendingCount">0</strong>
+        </div>
+        <div class="stat">
+          <span>Confirmados</span>
+          <strong id="confirmedCount">0</strong>
+        </div>
+        <div class="stat">
+          <span>Total exibido</span>
+          <strong id="totalCount">0</strong>
+        </div>
+      </div>
+
+      <section class="panel">
+        <h2>Calendário e filtros</h2>
+        <div class="filters">
+          <div>
+            <label for="dateFilter">Escolher data</label>
+            <input type="date" id="dateFilter">
+          </div>
+          <div>
+            <label for="statusFilter">Situação</label>
+            <select id="statusFilter">
+              <option value="all">Todas as solicitações</option>
+              <option value="pending">Pendentes</option>
+              <option value="confirmed">Confirmados</option>
+              <option value="rejected">Recusados</option>
+            </select>
+          </div>
+        </div>
+        <br>
+        <button id="clearFilters" class="reschedule">Ver todas as datas</button>
+      </section>
+
+      <section class="panel">
+        <h2>Solicitações</h2>
+        <p id="listMessage" class="muted">Carregando...</p>
+        <div id="appointmentsList"></div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    // Configure com os dados do seu projeto Supabase.
+    const SUPABASE_URL = "https://kijuuwswmvamkharpxso.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_rpsqLWRScz2YkF422YDD7A_cH06D8Ws";
+
+    const db = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+
+    const $ = id => document.getElementById(id);
+
+    let appointments = [];
+    let realtimeChannel = null;
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      })[char]);
+    }
+
+    function money(value) {
+      return Number(value).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
+    }
+
+    function dateBR(value) {
+      if (!value) return "—";
+      const [year, month, day] = value.split("-");
+      return `${day}/${month}/${year}`;
+    }
+
+    function timeBR(value) {
+      return String(value || "").slice(0, 5);
+    }
+
+    function statusLabel(status) {
+      return {
+        pending: "Pendente",
+        confirmed: "Confirmado",
+        rejected: "Recusado"
+      }[status] || status;
+    }
+
+    function showMessage(text, error = false) {
+      $("listMessage").textContent = text;
+      $("listMessage").style.color = error ? "#a83248" : "";
+    }
+
+    async function checkAdmin(user) {
+      const { data, error } = await db
+        .from("booking_admins")
+        .select("user_id")
+        .eq("user_id", user.id)
+        .maybeSingle();
+
+      if (error) throw error;
+      if (!data) {
+        await db.auth.signOut();
+        throw new Error("Este usuário não tem permissão de administradora.");
+      }
+    }
+
+    async function startDashboard(user) {
+      await checkAdmin(user);
+
+      $("loginPanel").classList.add("hidden");
+      $("dashboard").classList.remove("hidden");
+
+      await loadAppointments();
+
+      if (realtimeChannel) {
+        await db.removeChannel(realtimeChannel);
+      }
+
+      realtimeChannel = db
+        .channel("raquel-appointments-live")
+        .on("postgres_changes", {
+          event: "*",
+          schema: "public",
+          table: "appointments"
+        }, () => loadAppointments())
+        .subscribe();
+
+    }
+
+    async function loadAppointments() {
+      showMessage("Atualizando agenda...");
+
+      const { data, error } = await db
+        .from("appointments")
+        .select("*")
+        .order("appointment_date", { ascending: true })
+        .order("appointment_time", { ascending: true });
+
+      if (error) {
+        showMessage("Não foi possível carregar os agendamentos: " +
+          error.message, true);
+        return;
+      }
+
+      appointments = data || [];
+      renderAppointments();
+    }
+
+    function renderAppointments() {
+      const date = $("dateFilter").value;
+      const status = $("statusFilter").value;
+
+      const filtered = appointments.filter(item =>
+        (!date || item.appointment_date === date) &&
+        (status === "all" || item.status === status)
+      );
+
+      $("pendingCount").textContent =
+        appointments.filter(a => a.status === "pending").length;
+
+      $("confirmedCount").textContent =
+        appointments.filter(a => a.status === "confirmed").length;
+
+      $("totalCount").textContent = filtered.length;
+
+      showMessage(filtered.length
+        ? `${filtered.length} solicitação(ões) encontrada(s).`
+        : "Nenhuma solicitação encontrada.");
+
+      $("appointmentsList").innerHTML = filtered.map(item => {
+        const actions = item.status === "pending"
+          ? `<button class="accept" data-action="confirm"
+                     data-id="${item.id}">Aceitar</button>
+             <button class="reject" data-action="reject"
+                     data-id="${item.id}">Recusar</button>
+             <button class="reschedule" data-action="reschedule"
+                     data-id="${item.id}">Remarcar</button>`
+          : item.status === "confirmed"
+          ? `<button class="reschedule" data-action="reschedule"
+                     data-id="${item.id}">Remarcar</button>
+             <button class="reject" data-action="reject"
+                     data-id="${item.id}">Cancelar</button>`
+          : `<button class="reschedule" data-action="reschedule"
+                     data-id="${item.id}">Reabrir / remarcar</button>`;
+
+        const phone = String(item.client_phone || "").replace(/\D/g, "");
+
+        return `
+          <article class="appointment">
+            <div style="display:flex;justify-content:space-between;
+                        gap:10px;flex-wrap:wrap">
+              <h3>${escapeHTML(item.client_name)}</h3>
+              <span class="status ${escapeHTML(item.status)}">
+                ${escapeHTML(statusLabel(item.status))}
+              </span>
+            </div>
+
+            <div class="details">
+              📱 WhatsApp: ${escapeHTML(item.client_phone)}
+              ${phone ? ` · <a target="_blank" rel="noopener"
+                href="https://wa.me/${phone}">Conversar</a>` : ""}<br>
+              💅 Serviço: ${escapeHTML(item.service_name)}<br>
+              💰 Valor: ${money(item.service_price)}<br>
+              📅 Data: ${dateBR(item.appointment_date)}<br>
+              🕒 Horário: ${timeBR(item.appointment_time)}<br>
+              📝 Observações: ${escapeHTML(item.notes || "Nenhuma")}
+            </div>
+
+            <div class="actions">${actions}</div>
+          </article>`;
+      }).join("");
+    }
+
+    $("loginForm").addEventListener("submit", async event => {
+      event.preventDefault();
+      $("loginMessage").textContent = "Verificando acesso...";
+
+      const { data, error } = await db.auth.signInWithPassword({
+        email: $("email").value.trim(),
+        password: $("password").value
+      });
+
+      if (error) {
+        $("loginMessage").textContent =
+          "Não foi possível entrar. Confira o e-mail e a senha.";
+        return;
+      }
+
+      try {
+        await startDashboard(data.user);
+        $("loginMessage").textContent = "";
+      } catch (err) {
+        $("loginMessage").textContent = err.message;
+      }
+    });
+
+    $("logoutBtn").addEventListener("click", async () => {
+      if (realtimeChannel) {
+        await db.removeChannel(realtimeChannel);
+        realtimeChannel = null;
+      }
+
+      await db.auth.signOut();
+      $("dashboard").classList.add("hidden");
+      $("loginPanel").classList.remove("hidden");
+      $("password").value = "";
+    });
+
+    $("dateFilter").addEventListener("change", renderAppointments);
+    $("statusFilter").addEventListener("change", renderAppointments);
+
+    $("clearFilters").addEventListener("click", () => {
+      $("dateFilter").value = "";
+      $("statusFilter").value = "all";
+      renderAppointments();
+    });
+
+    $("appointmentsList").addEventListener("click", async event => {
+      const button = event.target.closest("button[data-action]");
+      if (!button) return;
+
+      const item = appointments.find(a => a.id === button.dataset.id);
+      if (!item) return;
+
+      const action = button.dataset.action;
+      let update = {};
+
+      if (action === "confirm") {
+        if (!confirm("Confirmar este agendamento?")) return;
+        update = { status: "confirmed" };
+      }
+
+      if (action === "reject") {
+        if (!confirm("Recusar ou cancelar este agendamento?")) return;
+        update = { status: "rejected" };
+      }
+
+      if (action === "reschedule") {
+        const date = prompt(
+          "Nova data (AAAA-MM-DD):", item.appointment_date
+        );
+        if (!date) return;
+
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+          alert("Informe a data no formato AAAA-MM-DD.");
+          return;
+        }
+
+        const time = prompt(
+          "Novo horário (HH:MM):", timeBR(item.appointment_time)
+        );
+        if (!time) return;
+
+        if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(time)) {
+          alert("Informe o horário no formato HH:MM.");
+          return;
+        }
+
+        update = {
+          appointment_date: date,
+          appointment_time: time,
+          status: "confirmed"
+        };
+      }
+
+      update.updated_at = new Date().toISOString();
+      button.disabled = true;
+
+      const { error } = await db
+        .from("appointments")
+        .update(update)
+        .eq("id", item.id);
+
+      button.disabled = false;
+
+      if (error) {
+        if (error.code === "23505") {
+          alert("Esse horário já está reservado. Escolha outro.");
+        } else {
+          alert("Não foi possível salvar a alteração: " + error.message);
+        }
+        return;
+      }
+
+      await loadAppointments();
+    });
+
+    async function restoreSession() {
+      const { data, error } = await db.auth.getSession();
+      if (error || !data.session) return;
+
+      try {
+        await startDashboard(data.session.user);
+      } catch (err) {
+        $("loginMessage").textContent = err.message;
+        $("loginPanel").classList.remove("hidden");
+        $("dashboard").classList.add("hidden");
+      }
+    }
+
+    restoreSession();
+  </script>
+</body>
+</html>
