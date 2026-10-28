@@ -1,0 +1,1571 @@
+﻿
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <meta charset="UTF-8">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#76172e">
+  <meta name="description" content="Agende seu atendimento com Raquel Salazar, Nail Designer. Escolha seu serviço, data e horário.">
+  <title>Agendamento | Raquel Salazar Nail Designer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --wine: #76172e;
+      --wine-light: #a52c49;
+      --pink: #f1a0b0;
+      --pink-soft: #f8e6e8;
+      --ink: #211817;
+      --cream: #fffdfb;
+      --muted: #786d6b;
+      --border: #ead2d4;
+      --white: #ffffff;
+      --shadow: 0 18px 55px rgba(83, 24, 39, .09);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 25px;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.6;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 370px;
+      overflow: hidden;
+      color: white;
+      background:
+        linear-gradient(90deg, rgba(24, 10, 13, .91), rgba(65, 22, 34, .70)),
+        url("img/Gemini_Generated_Image_sugnwvsugnwvsugn.jpg")
+        center 42% / cover no-repeat,
+        #32151e;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "✿";
+      position: absolute;
+      color: var(--wine-light);
+      opacity: .38;
+      font-size: clamp(110px, 18vw, 220px);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      top: -55px;
+      left: -35px;
+      transform: rotate(-25deg);
+    }
+
+    .hero::after {
+      bottom: -95px;
+      right: -15px;
+      transform: rotate(25deg);
+    }
+
+    .navbar {
+      position: relative;
+      z-index: 2;
+      width: min(1120px, 90%);
+      min-height: 82px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font: 700 28px/1.1 "Playfair Display", serif;
+      letter-spacing: -1px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      display: block;
+      margin-top: 5px;
+      font: 500 9px "DM Sans", sans-serif;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--pink);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.85);
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--pink);
+    }
+
+    .nav-cta {
+      border: 1px solid rgba(255,255,255,.65);
+      border-radius: 999px;
+      padding: 10px 17px;
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: .2s;
+    }
+
+    .nav-cta:hover {
+      background: white;
+      color: var(--wine);
+    }
+
+    .menu-toggle {
+      display: none;
+      color: white;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.5);
+      border-radius: 9px;
+      padding: 8px 12px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: min(1120px, 90%);
+      min-height: 270px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      padding: 28px 0 65px;
+    }
+
+    .hero-copy {
+      max-width: 600px;
+    }
+
+    .eyebrow {
+      display: block;
+      margin-bottom: 15px;
+      color: var(--pink);
+      font-size: 10px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      font-family: "Playfair Display", serif;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-size: clamp(39px, 6vw, 66px);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+    }
+
+    .hero-copy p {
+      max-width: 450px;
+      margin-top: 17px;
+      color: rgba(255,255,255,.8);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .hero-heart {
+      color: var(--pink);
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      min-height: 48px;
+      padding: 13px 23px;
+      border: 1px solid var(--wine);
+      border-radius: 999px;
+      background: var(--wine);
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-align: center;
+      text-transform: uppercase;
+      transition: background .2s, transform .2s;
+    }
+
+    .button:hover {
+      background: var(--wine-light);
+      transform: translateY(-2px);
+    }
+
+    .hero .button {
+      margin-top: 23px;
+      background: transparent;
+      border-color: rgba(255,255,255,.6);
+    }
+
+    .hero .button:hover {
+      background: white;
+      color: var(--wine);
+    }
+
+    .section {
+      padding: 72px 5%;
+    }
+
+    .section-inner {
+      width: min(1050px, 100%);
+      margin: auto;
+    }
+
+    .section-heading {
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .section-kicker {
+      margin-bottom: 10px;
+      color: var(--wine);
+      font-size: 10px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      color: #481520;
+      font-size: clamp(34px, 5vw, 50px);
+      line-height: 1.15;
+    }
+
+    .section-intro {
+      max-width: 570px;
+      margin: 13px auto 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    /* Serviços */
+
+    .services-section {
+      background:
+        radial-gradient(ellipse at 10% 15%, rgba(222,151,162,.12), transparent 35%),
+        #fffdfb;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .service-card {
+      position: relative;
+      min-width: 0;
+      padding: 23px 20px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: rgba(255,255,255,.82);
+      box-shadow: 0 9px 30px rgba(95,36,48,.035);
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-3px);
+      border-color: #c98291;
+      box-shadow: var(--shadow);
+    }
+
+    .service-card.selected {
+      border: 2px solid var(--wine);
+      background: #fff7f8;
+      box-shadow: 0 8px 25px rgba(118,23,46,.09);
+    }
+
+    .service-card.selected::after {
+      content: "✓ Selecionado";
+      position: absolute;
+      top: 13px;
+      right: 12px;
+      color: var(--wine);
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .service-symbol {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 17px;
+      border-radius: 50%;
+      background: var(--pink-soft);
+      color: var(--wine);
+      font-size: 23px;
+    }
+
+    .service-card h3 {
+      margin-bottom: 7px;
+      color: #481520;
+      font-size: 21px;
+    }
+
+    .service-card p {
+      min-height: 40px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .service-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 18px;
+      padding-top: 15px;
+      border-top: 1px solid #f0dfe1;
+    }
+
+    .service-price {
+      color: var(--wine);
+      font-size: 19px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .select-service {
+      padding: 8px 11px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: white;
+      color: var(--wine);
+      font-size: 10px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .service-card.selected .select-service {
+      background: var(--wine);
+      color: white;
+      border-color: var(--wine);
+    }
+
+    .maintenance-title {
+      margin: 36px 0 18px;
+      color: #481520;
+      font: 600 26px "Playfair Display", serif;
+      text-align: center;
+    }
+
+    .maintenance-note {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    /* Formulário */
+
+    .booking-section {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 90% 10%, rgba(222,151,162,.16), transparent 32%),
+        #f8eeeb;
+    }
+
+    .booking-layout {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .booking-aside {
+      position: sticky;
+      top: 20px;
+      padding: 30px 25px;
+      border-radius: 24px;
+      background: linear-gradient(150deg, #571427, #2a1018);
+      color: white;
+      overflow: hidden;
+    }
+
+    .booking-aside .aside-symbol {
+      color: var(--pink);
+      font-size: 42px;
+      line-height: 1;
+      margin-bottom: 22px;
+    }
+
+    .booking-aside h3 {
+      font-size: 29px;
+      line-height: 1.2;
+    }
+
+    .booking-aside p {
+      margin-top: 15px;
+      color: rgba(255,255,255,.73);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .aside-list {
+      list-style: none;
+      margin-top: 25px;
+    }
+
+    .aside-list li {
+      display: flex;
+      gap: 10px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.87);
+      font-size: 12px;
+    }
+
+    .aside-list li span {
+      color: var(--pink);
+    }
+
+    .booking-form {
+      min-width: 0;
+      padding: clamp(20px, 4vw, 36px);
+      border: 1px solid #ecd4d5;
+      border-radius: 24px;
+      background: rgba(255,255,255,.94);
+      box-shadow: var(--shadow);
+    }
+
+    .form-heading {
+      margin-bottom: 25px;
+    }
+
+    .form-heading h3 {
+      color: #481520;
+      font-size: 29px;
+    }
+
+    .form-heading p {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 19px 16px;
+    }
+
+    .field {
+      min-width: 0;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      color: #4c3538;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .field label .required {
+      color: var(--wine-light);
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      display: block;
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 13px;
+      border: 1px solid #e4ced0;
+      border-radius: 11px;
+      outline: none;
+      background: #fffdfc;
+      color: var(--ink);
+      font-size: 13px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .field textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--wine-light);
+      box-shadow: 0 0 0 3px rgba(165,44,73,.09);
+    }
+
+    .field input:disabled,
+    .field select:disabled {
+      background: #f4eeee;
+      color: #8e8384;
+      cursor: not-allowed;
+    }
+
+    .field-hint {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      margin-top: 22px;
+      padding: 14px;
+      border: 1px solid #efd5d9;
+      border-radius: 12px;
+      background: #fff5f6;
+      color: #663141;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .notice strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 19px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .consent input {
+      flex: 0 0 auto;
+      width: 16px;
+      height: 16px;
+      margin-top: 3px;
+      accent-color: var(--wine);
+    }
+
+    .submit-button {
+      width: 100%;
+      min-height: 54px;
+      margin-top: 23px;
+      border-radius: 12px;
+      font-size: 11px;
+    }
+
+    .submit-button:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-message {
+      display: none;
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .form-message.error {
+      display: block;
+      background: #fff0f0;
+      color: #9a2638;
+      border: 1px solid #f0c9ce;
+    }
+
+    .form-message.success {
+      display: block;
+      background: #f0f8f0;
+      color: #245d37;
+      border: 1px solid #c8e5ce;
+    }
+
+    /* Informações */
+
+    .info-section {
+      padding: 60px 5%;
+      background: var(--cream);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .info-card {
+      padding: 23px 18px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      text-align: center;
+      background: white;
+    }
+
+    .info-card .info-icon {
+      margin-bottom: 10px;
+      color: var(--wine);
+      font-size: 27px;
+    }
+
+    .info-card h3 {
+      margin-bottom: 6px;
+      color: #481520;
+      font-size: 20px;
+    }
+
+    .info-card p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    footer {
+      padding: 30px 5%;
+      background: #28151a;
+      color: white;
+    }
+
+    .footer-inner {
+      width: min(1050px, 100%);
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    footer p {
+      color: rgba(255,255,255,.63);
+      font-size: 11px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 17px;
+      font-size: 11px;
+      color: rgba(255,255,255,.8);
+    }
+
+    .footer-links a:hover {
+      color: var(--pink);
+    }
+
+    @media (max-width: 850px) {
+      .nav-links {
+        gap: 13px;
+      }
+
+      .nav-links a {
+        font-size: 10px;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .booking-layout {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .booking-aside {
+        position: static;
+      }
+
+      .aside-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 15px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .hero {
+        min-height: 420px;
+      }
+
+      .navbar {
+        min-height: 75px;
+      }
+
+      .logo {
+        font-size: 24px;
+      }
+
+      .menu-toggle {
+        display: block;
+        position: relative;
+        z-index: 5;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        right: 0;
+        z-index: 4;
+        padding: 10px;
+        border: 1px solid rgba(255,255,255,.15);
+        border-radius: 14px;
+        background: rgba(35,18,24,.98);
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      .nav-links a {
+        padding: 13px 10px;
+        font-size: 11px;
+      }
+
+      .hero-content {
+        min-height: 325px;
+        align-items: center;
+        padding: 25px 0 45px;
+      }
+
+      .hero-copy p {
+        font-size: 13px;
+      }
+
+      .section {
+        padding: 55px 5%;
+      }
+
+      .services-grid {
+        gap: 12px;
+      }
+
+      .service-card {
+        padding: 17px 13px;
+        border-radius: 16px;
+      }
+
+      .service-card h3 {
+        font-size: 18px;
+      }
+
+      .service-card p {
+        min-height: 54px;
+        font-size: 11px;
+      }
+
+      .service-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .service-price {
+        font-size: 18px;
+      }
+
+      .select-service {
+        width: 100%;
+      }
+
+      .service-card.selected::after {
+        position: static;
+        display: block;
+        margin: -7px 0 12px;
+      }
+
+      .booking-form {
+        padding: 21px 16px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .info-card {
+        padding: 20px 16px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-links {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card p {
+        min-height: auto;
+      }
+
+      .service-bottom {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .select-service {
+        width: auto;
+      }
+
+      .aside-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hero" id="inicio">
+    <nav class="navbar" aria-label="Navegação principal">
+      <a class="logo" href="#inicio">
+        Raquel Salazar
+        <span>Nail Designer</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="navLinks">
+        Menu ☰
+      </button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#inicio">Início</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#agendar">Agendamento</a>
+        <a href="#informacoes">Informações</a>
+      </div>
+
+      <a class="nav-cta" href="#agendar">Agendar agora ↗</a>
+    </nav>
+
+    <div class="hero-content">
+      <div class="hero-copy">
+        <span class="eyebrow">Seu momento de autocuidado</span>
+        <h1>Suas unhas,<br>seu momento <span class="hero-heart">♡</span></h1>
+        <p>
+          Realce sua beleza com delicadeza, elegância e cuidado
+          em cada detalhe. Escolha seu serviço e solicite seu
+          horário de atendimento.
+        </p>
+        <a class="button" href="#agendar">Solicitar agendamento ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section services-section" id="servicos">
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="section-kicker">Beleza em cada detalhe</p>
+          <h2>Nossos serviços</h2>
+          <p class="section-intro">
+            Escolha seu cuidado favorito. Selecione um serviço
+            para preencher automaticamente o formulário de agendamento.
+          </p>
+        </div>
+
+        <div class="services-grid" id="servicesGrid"></div>
+
+        <h3 class="maintenance-title">Manutenções</h3>
+        <div class="services-grid" id="maintenanceGrid"></div>
+
+        <p class="maintenance-note">
+          Os valores estão sujeitos a confirmação no momento do atendimento. ♡
+        </p>
+      </div>
+    </section>
+
+    <section class="section booking-section" id="agendar">
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="section-kicker">Reserve seu momento</p>
+          <h2>Agende seu horário</h2>
+          <p class="section-intro">
+            Preencha seus dados e envie sua solicitação diretamente
+            para o WhatsApp da Raquel.
+          </p>
+        </div>
+
+        <div class="booking-layout">
+          <aside class="booking-aside">
+            <div class="aside-symbol">✿</div>
+            <h3>Um momento só seu.</h3>
+            <p>
+              Será um prazer cuidar das suas unhas!
+              Escolha o serviço, informe sua preferência de horário
+              e aguarde a confirmação.
+            </p>
+
+            <ul class="aside-list">
+              <li><span>♡</span> Atendimento personalizado</li>
+              <li><span>✧</span> Cuidado em cada detalhe</li>
+              <li><span>❀</span> Beleza e autoestima</li>
+              <li><span>✓</span> Confirmação pelo WhatsApp</li>
+            </ul>
+          </aside>
+
+          <form class="booking-form" id="bookingForm">
+            <div class="form-heading">
+              <h3>Seus dados</h3>
+              <p>Os campos com * são obrigatórios.</p>
+            </div>
+
+            <div class="form-grid">
+              <div class="field full">
+                <label for="customerName">Nome completo <span class="required">*</span></label>
+                <input
+                  id="customerName"
+                  name="customerName"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="Como podemos te chamar?"
+                  maxlength="100"
+                  required>
+              </div>
+
+              <div class="field full">
+                <label for="customerPhone">Seu WhatsApp <span class="required">*</span></label>
+                <input
+                  id="customerPhone"
+                  name="customerPhone"
+                  type="tel"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  placeholder="(21) 99999-9999"
+                  maxlength="20"
+                  required>
+              </div>
+
+              <div class="field full">
+                <label for="service">Serviço desejado <span class="required">*</span></label>
+                <select id="service" name="service" required>
+                  <option value="">Selecione um serviço</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="appointmentDate">Data desejada <span class="required">*</span></label>
+                <input
+                  id="appointmentDate"
+                  name="appointmentDate"
+                  type="date"
+                  required>
+                <small class="field-hint">Escolha um dia de atendimento.</small>
+              </div>
+
+              <div class="field">
+                <label for="appointmentTime">Horário desejado <span class="required">*</span></label>
+                <select id="appointmentTime" name="appointmentTime" required disabled>
+                  <option value="">Escolha a data primeiro</option>
+                </select>
+                <small class="field-hint" id="timeHint">
+                  Os horários dependem do dia escolhido.
+                </small>
+              </div>
+
+              <div class="field full">
+                <label for="notes">Observações (opcional)</label>
+                <textarea
+                  id="notes"
+                  name="notes"
+                  maxlength="500"
+                  placeholder="Conte se tem alguma preferência ou dúvida..."></textarea>
+              </div>
+            </div>
+
+            <div class="notice">
+              <span aria-hidden="true">♡</span>
+              <div>
+                <strong>Importante: seu horário ainda não está confirmado.</strong>
+                Esta é uma solicitação de agendamento. A Raquel verificará
+                a disponibilidade e confirmará o atendimento pelo WhatsApp.
+              </div>
+            </div>
+
+            <label class="consent">
+              <input id="consent" type="checkbox" required>
+              <span>
+                Autorizo o uso dos dados informados para entrar em contato
+                comigo sobre este agendamento.
+              </span>
+            </label>
+
+            <button class="button submit-button" id="submitButton" type="submit">
+              Enviar solicitação pelo WhatsApp ↗
+            </button>
+
+            <div class="form-message" id="formMessage" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-section" id="informacoes">
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="section-kicker">Antes de agendar</p>
+          <h2>Informações importantes</h2>
+        </div>
+
+        <div class="info-grid">
+          <article class="info-card">
+            <div class="info-icon">♡</div>
+            <h3>Confirmação</h3>
+            <p>
+              O pedido será enviado pelo WhatsApp.
+              Aguarde a confirmação da profissional antes de considerar
+              o horário reservado.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-icon">◷</div>
+            <h3>Horários</h3>
+            <p>
+              Os horários exibidos são sugestões configuradas pela
+              profissional. A disponibilidade precisa ser confirmada.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-icon">✧</div>
+            <h3>Precisa de ajuda?</h3>
+            <p>
+              Envie sua dúvida pelo WhatsApp antes de solicitar
+              seu atendimento.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <a class="logo" href="#inicio">
+        Raquel Salazar
+        <span>Nail Designer</span>
+      </a>
+
+      <p>© <span id="currentYear"></span> Raquel Salazar. Todos os direitos reservados.</p>
+
+      <div class="footer-links">
+        <a href="#servicos">Serviços</a>
+        <a href="#agendar">Agendamento</a>
+        <a href="#inicio">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /*
+    =========================================================
+    CONFIGURAÇÕES DA RAQUEL — EDITE ESTA PARTE
+    =========================================================
+
+    1. Troque o WhatsApp pelo número da profissional.
+       Use código do país + DDD + número, somente números.
+       Exemplo ilustrativo: 5521999999999
+
+    2. Configure os dias e horários em workingHours.
+       Domingo = 0, segunda = 1, terça = 2, quarta = 3,
+       quinta = 4, sexta = 5, sábado = 6.
+
+    3. Os horários são sugestões para solicitação manual.
+       Este site não verifica compromissos já marcados.
+    */
+
+    const CONFIG = {
+      whatsapp: "5521985791820",
+
+     workingHours: {
+  0: [], // Domingo: fechado
+   1: ["09:00", "10:30", "13:00", "14:30", "16:00"], // Segunda
+  2: ["09:00", "10:30", "13:00", "14:30", "16:00"], // Terça
+  3: [], // Quarta: fechado
+  4: ["07:00", "08:30", "10:00", "12:30", "14:00", "15:30"], // Quinta
+  5: ["07:00", "08:30", "10:00", "12:30", "14:00", "15:30"], // Sexta
+  6: ["07:00", "08:30", "10:00", "12:30", "14:00", "15:30"]  // Sábado
+},
+
+      maxDaysAhead: 90
+    };
+
+    const services = [
+      {
+        name: "Molde F1",
+        price: 90,
+        description: "Alongamento com acabamento elegante.",
+        symbol: "✧",
+        category: "service"
+      },
+      {
+        name: "Gel na tips",
+        price: 100,
+        description: "Alongamento com tips e acabamento em gel.",
+        symbol: "♡",
+        category: "service"
+      },
+      {
+        name: "Mão e pé tradicional",
+        price: 50,
+        description: "Cuidados tradicionais para mãos e pés.",
+        symbol: "❀",
+        category: "service"
+      },
+      {
+        name: "Pé",
+        price: 30,
+        description: "Cuidado e beleza para os pés.",
+        symbol: "✿",
+        category: "service"
+      },
+      {
+        name: "Mão",
+        price: 30,
+        description: "Cuidado tradicional para as unhas das mãos.",
+        symbol: "♡",
+        category: "service"
+      },
+      {
+        name: "Postiça realista",
+        price: 50,
+        description: "Visual delicado e natural.",
+        symbol: "✧",
+        category: "service"
+      },
+      {
+        name: "Banho de gel",
+        price: 70,
+        description: "Reforço e brilho para as unhas naturais.",
+        symbol: "❀",
+        category: "service"
+      },
+      {
+        name: "Manutenção de molde F1",
+        price: 80,
+        description: "Manutenção do alongamento em molde F1.",
+        symbol: "⟳",
+        category: "maintenance"
+      },
+      {
+        name: "Manutenção de banho de gel",
+        price: 60,
+        description: "Manutenção do banho de gel.",
+        symbol: "⟳",
+        category: "maintenance"
+      }
+    ];
+
+    const serviceSelect = document.getElementById("service");
+    const dateInput = document.getElementById("appointmentDate");
+    const timeSelect = document.getElementById("appointmentTime");
+    const timeHint = document.getElementById("timeHint");
+    const form = document.getElementById("bookingForm");
+    const formMessage = document.getElementById("formMessage");
+    const submitButton = document.getElementById("submitButton");
+
+    const brl = new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+      maximumFractionDigits: 2
+    });
+
+    function formatDateLocal(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    function parseLocalDate(value) {
+      const [year, month, day] = value.split("-").map(Number);
+      return new Date(year, month - 1, day);
+    }
+
+    function formatDateBR(value) {
+      return parseLocalDate(value).toLocaleDateString("pt-BR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+      });
+    }
+
+    function showMessage(message, type) {
+      formMessage.textContent = message;
+      formMessage.className = "form-message " + type;
+    }
+
+    function clearMessage() {
+      formMessage.textContent = "";
+      formMessage.className = "form-message";
+    }
+
+    function renderServices(category, containerId) {
+      const container = document.getElementById(containerId);
+
+      services
+        .filter(item => item.category === category)
+        .forEach(item => {
+          const card = document.createElement("article");
+          card.className = "service-card";
+
+          const symbol = document.createElement("div");
+          symbol.className = "service-symbol";
+          symbol.textContent = item.symbol;
+
+          const title = document.createElement("h3");
+          title.textContent = item.name;
+
+          const description = document.createElement("p");
+          description.textContent = item.description;
+
+          const bottom = document.createElement("div");
+          bottom.className = "service-bottom";
+
+          const price = document.createElement("span");
+          price.className = "service-price";
+          price.textContent = brl.format(item.price);
+
+          const button = document.createElement("button");
+          button.className = "select-service";
+          button.type = "button";
+          button.textContent = "Escolher";
+
+          button.addEventListener("click", () => {
+            serviceSelect.value = item.name;
+            updateSelectedCards();
+            document.getElementById("agendar").scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+          });
+
+          bottom.append(price, button);
+          card.append(symbol, title, description, bottom);
+          container.appendChild(card);
+        });
+    }
+
+    function populateServiceSelect() {
+      services.forEach(item => {
+        const option = document.createElement("option");
+        option.value = item.name;
+        option.textContent = `${item.name} — ${brl.format(item.price)}`;
+        serviceSelect.appendChild(option);
+      });
+    }
+
+    function updateSelectedCards() {
+      document.querySelectorAll(".service-card").forEach(card => {
+        const title = card.querySelector("h3");
+        const button = card.querySelector(".select-service");
+        const selected = title.textContent === serviceSelect.value;
+
+        card.classList.toggle("selected", selected);
+        button.textContent = selected ? "Selecionado ✓" : "Escolher";
+        button.setAttribute("aria-pressed", String(selected));
+      });
+    }
+
+    function updateAvailableTimes() {
+      clearMessage();
+      timeSelect.replaceChildren();
+
+      if (!dateInput.value) {
+        timeSelect.add(new Option("Escolha a data primeiro", ""));
+        timeSelect.disabled = true;
+        timeHint.textContent = "Os horários dependem do dia escolhido.";
+        return;
+      }
+
+      const selectedDate = parseLocalDate(dateInput.value);
+      const day = selectedDate.getDay();
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      const maxDate = new Date(today);
+      maxDate.setDate(maxDate.getDate() + CONFIG.maxDaysAhead);
+
+      if (selectedDate < today || selectedDate > maxDate) {
+        timeSelect.add(new Option("Data fora do período", ""));
+        timeSelect.disabled = true;
+        timeHint.textContent = "Escolha uma data dentro do período permitido.";
+        return;
+      }
+
+      const times = CONFIG.workingHours[day] || [];
+
+      if (!times.length) {
+        timeSelect.add(new Option("Dia sem atendimento", ""));
+        timeSelect.disabled = true;
+        timeHint.textContent = "A Raquel não atende neste dia. Escolha outra data.";
+        return;
+      }
+
+      const now = new Date();
+      const isToday = formatDateLocal(today) === dateInput.value;
+
+      const availableSuggestions = times.filter(time => {
+        if (!isToday) return true;
+
+        const [hour, minute] = time.split(":").map(Number);
+        const slot = new Date();
+        slot.setHours(hour, minute, 0, 0);
+
+        return slot > now;
+      });
+
+      if (!availableSuggestions.length) {
+        timeSelect.add(new Option("Sem horários restantes hoje", ""));
+        timeSelect.disabled = true;
+        timeHint.textContent = "Escolha outra data para solicitar atendimento.";
+        return;
+      }
+
+      timeSelect.add(new Option("Selecione um horário", ""));
+      availableSuggestions.forEach(time => {
+        timeSelect.add(new Option(time, time));
+      });
+
+      timeSelect.disabled = false;
+      timeHint.textContent =
+        "Horários sugeridos. A disponibilidade será confirmada pela Raquel.";
+    }
+
+    function configureDateLimits() {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      const maxDate = new Date(today);
+      maxDate.setDate(maxDate.getDate() + CONFIG.maxDaysAhead);
+
+      dateInput.min = formatDateLocal(today);
+      dateInput.max = formatDateLocal(maxDate);
+    }
+
+    function validWhatsAppNumber(number) {
+      // Número internacional com DDI, DDD e telefone.
+      return /^\d{12,13}$/.test(number);
+    }
+
+    function submitBooking(event) {
+      event.preventDefault();
+      clearMessage();
+
+      if (!form.reportValidity()) return;
+
+      if (!validWhatsAppNumber(CONFIG.whatsapp)) {
+        showMessage(
+          "O WhatsApp da profissional ainda não foi configurado. Atualize o número na seção CONFIGURAÇÕES do código.",
+          "error"
+        );
+        return;
+      }
+
+      if (!serviceSelect.value || !dateInput.value || !timeSelect.value) {
+        showMessage("Selecione o serviço, a data e o horário desejados.", "error");
+        return;
+      }
+
+      const date = parseLocalDate(dateInput.value);
+      const times = CONFIG.workingHours[date.getDay()] || [];
+
+      if (!times.includes(timeSelect.value)) {
+        showMessage(
+          "Esse horário não faz parte dos horários configurados. Escolha outra opção.",
+          "error"
+        );
+        updateAvailableTimes();
+        return;
+      }
+
+      const service = services.find(item => item.name === serviceSelect.value);
+      if (!service) {
+        showMessage("Selecione um serviço válido.", "error");
+        return;
+      }
+
+      const name = document.getElementById("customerName").value.trim();
+      const phone = document.getElementById("customerPhone").value.trim();
+      const notes = document.getElementById("notes").value.trim();
+
+      if (name.length < 2) {
+        showMessage("Informe seu nome completo.", "error");
+        return;
+      }
+
+      const message = [
+        " *SOLICITAÇÃO DE AGENDAMENTO*",
+        "",
+        "Olá, Raquel! Gostaria de solicitar um horário.",
+        "",
+        " *Nome:* " + name,
+        " *WhatsApp da cliente:* " + phone,
+        " *Serviço:* " + service.name,
+        " *Valor informado:* " + brl.format(service.price),
+        " *Data desejada:* " + formatDateBR(dateInput.value),
+        " *Horário desejado:* " + timeSelect.value,
+        notes ? " *Observações:* " + notes : "",
+        "",
+        "Aguardo a confirmação da disponibilidade. Obrigada! ♡"
+      ].filter(Boolean).join("\n");
+
+      const whatsappURL =
+        "https://wa.me/" + CONFIG.whatsapp +
+        "?text=" + encodeURIComponent(message);
+
+      showMessage(
+        "Sua solicitação está pronta. O WhatsApp será aberto para você enviar a mensagem. O horário ainda dependerá da confirmação da Raquel.",
+        "success"
+      );
+
+      const newWindow = window.open(whatsappURL, "_blank", "noopener,noreferrer");
+
+      if (!newWindow) {
+        showMessage(
+          "O navegador bloqueou a abertura automática. Use o link abaixo para continuar no WhatsApp.",
+          "success"
+        );
+
+        const link = document.createElement("a");
+        link.href = whatsappURL;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = "Abrir WhatsApp e enviar solicitação ↗";
+        link.className = "button";
+        link.style.marginTop = "12px";
+        formMessage.appendChild(document.createElement("br"));
+        formMessage.appendChild(link);
+      }
+    }
+
+    // Menu para dispositivos móveis.
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Inicialização da página.
+    renderServices("service", "servicesGrid");
+    renderServices("maintenance", "maintenanceGrid");
+    populateServiceSelect();
+    configureDateLimits();
+    updateAvailableTimes();
+
+    serviceSelect.addEventListener("change", updateSelectedCards);
+    dateInput.addEventListener("change", updateAvailableTimes);
+    form.addEventListener("submit", submitBooking);
+
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+
+    // Atualiza a lista caso a página permaneça aberta até outro dia.
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) updateAvailableTimes();
+    });
+  </script>
+</body>
+</html>
