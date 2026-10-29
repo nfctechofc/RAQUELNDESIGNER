@@ -1207,7 +1207,7 @@
                   type="tel"
                   inputmode="tel"
                   autocomplete="tel"
-                  placeholder="(21) 99999-9999"
+                  placeholder="+55 21 99999-9999"
                   maxlength="20"
                   required>
               </div>
@@ -1803,7 +1803,7 @@ const supabaseClient = window.supabase.createClient(
         "Olá, Raquel! Gostaria de solicitar um horário.",
         "",
         " *Nome:* " + name,
-        " *WhatsApp da cliente:* "55 + phone,
+        " *WhatsApp da cliente:* " + phone,
         " *Serviço:* " + service.name,
         " *Valor informado:* " + brl.format(service.price),
         " *Data desejada:* " + formatDateBR(dateInput.value),
