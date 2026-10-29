@@ -2104,10 +2104,7 @@ let galleryLastTime = performance.now();
 const galleryStep = 360 / galleryCards.length;
 
 function renderGallery() {
-  const radius = Math.max(
-    235,
-    Math.min(340, gallery.clientWidth * 0.72)
-  );
+  const radius = Math.max(300, Math.min(450, gallery.clientWidth * 0.95));
 
   galleryCards.forEach((card, index) => {
     const angle = index * galleryStep + galleryAngle;
