@@ -69,7 +69,7 @@
       color: white;
       background:
         linear-gradient(90deg, rgba(24, 10, 13, .91), rgba(65, 22, 34, .70)),
-        url("Gemini_Generated_Image_sugnwvsugnwvsugn.jpg")
+        url("img/Gemini_Generated_Image_sugnwvsugnwvsugn.jpg")
         center 42% / cover no-repeat,
         #32151e;
     }
@@ -1066,6 +1066,100 @@
   text-decoration: line-through;
   opacity: 0.6;
 }
+
+/* Galeria circular 3D */
+.gallery-section {
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at center, #f8e6e8 0%, #fffdfb 68%);
+}
+
+.circular-gallery {
+  position: relative;
+  width: 100%;
+  height: 390px;
+  perspective: 1100px;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+}
+
+.circular-gallery:active {
+  cursor: grabbing;
+}
+
+.circular-gallery-ring {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.gallery-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 210px;
+  height: 285px;
+  margin: 0;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,.9);
+  border-radius: 18px;
+  background: #571427;
+  box-shadow: 0 15px 35px rgba(83,24,39,.2);
+  backface-visibility: hidden;
+}
+
+.gallery-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.gallery-card figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 24px 12px 15px;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  background: linear-gradient(transparent, rgba(35,10,18,.9));
+}
+
+.gallery-hint {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+}
+
+.gallery-cta {
+  margin-top: 24px;
+  text-align: center;
+}
+
+@media (max-width: 650px) {
+  .circular-gallery {
+    height: 330px;
+  }
+
+  .gallery-card {
+    width: 165px;
+    height: 230px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .circular-gallery-ring {
+    scroll-behavior: auto;
+  }
+}
+
   </style>
 </head>
 
@@ -1106,7 +1200,7 @@
         
 <div class="hero-profile">
   <img
-    src="753381996_18094492793576649_2507489137348182838_n.jpg"
+    src="img\753381996_18094492793576649_2507489137348182838_n.jpg"
     alt="Raquel Salazar, Nail Designer"
     width="112"
     height="112"
@@ -1150,6 +1244,79 @@
         </p>
       </div>
     </section>
+
+<section class="section gallery-section" id="galeria">
+  <div class="section-inner">
+    <div class="section-heading">
+      <p class="section-kicker">Nosso trabalho</p>
+      <h2>Beleza em cada detalhe</h2>
+      <p class="section-intro">
+        Confira alguns trabalhos e inspire-se para seu próximo atendimento.
+      </p>
+    </div>
+
+    <div class="circular-gallery">
+      
+<div class="circular-gallery-ring" id="galleryRing">
+  <figure class="gallery-card">
+    <img src="img/galeria-1.jpg" alt="Alongamento de unhas">
+    <figcaption>Alongamentos</figcaption>
+  </figure>
+  <figure class="gallery-card">
+    <img src="img/galeria-2.jpg" alt="Unhas decoradas">
+    <figcaption>Nail art</figcaption>
+  </figure>
+  <figure class="gallery-card">
+    <img src="img/galeria-3.jpg" alt="Manutenção de unhas">
+    <figcaption>Manutenções</figcaption>
+  </figure>
+  <figure class="gallery-card">
+    <img src="img/galeria-4.jpg" alt="Esmaltação de unhas">
+    <figcaption>Esmaltação</figcaption>
+  </figure>
+  <figure class="gallery-card">
+    <img src="img/galeria-5.jpg" alt="Unhas em gel">
+    <figcaption>Unhas em gel</figcaption>
+  </figure>
+  <figure class="gallery-card">
+    <img src="img/galeria-6.jpg" alt="Detalhes de nail design">
+    <figcaption>Detalhes</figcaption>
+  </figure>
+  <figure class="gallery-card">
+    <img src="img/galeria-7.jpg" alt="Unhas com decoração delicada">
+    <figcaption>Decoração delicada</figcaption>
+  </figure>
+  <figure class="gallery-card">
+    <img src="img/galeria-8.jpg" alt="Unhas francesinhas">
+    <figcaption>Francesinhas</figcaption>
+  </figure>
+  <figure class="gallery-card">
+    <img src="img/galeria-9.jpg" alt="Unhas decoradas em tons rosados">
+    <figcaption>Tons rosados</figcaption>
+  </figure>
+  <figure class="gallery-card">
+    <img src="img/galeria-10.jpg" alt="Unhas elegantes">
+    <figcaption>Elegância</figcaption>
+  </figure>
+  <figure class="gallery-card">
+    <img src="img/galeria-11.jpg" alt="Nail art moderna">
+    <figcaption>Nail art moderna</figcaption>
+  </figure>
+  <figure class="gallery-card">
+    <img src="img/galeria-12.jpg" alt="Design exclusivo de unhas">
+    <figcaption>Design exclusivo</figcaption>
+  </figure>
+</div>
+
+    </div>
+
+    <p class="gallery-hint">Arraste para girar ♡</p>
+
+    <div class="gallery-cta">
+      <a href="#agendar" class="button">Agende seu horário ↗</a>
+    </div>
+  </div>
+</section>
 
     <section class="section booking-section" id="agendar">
       <div class="section-inner">
@@ -1916,6 +2083,87 @@ try {
     document.addEventListener("visibilitychange", () => {
       if (!document.hidden) updateAvailableTimes();
     });
+    
+const galleryRing = document.getElementById("galleryRing");
+const gallery = document.querySelector(".circular-gallery");
+const galleryCards = [...galleryRing.querySelectorAll(".gallery-card")];
+
+let galleryAngle = 0;
+let galleryTarget = 0;
+let galleryDragging = false;
+let galleryStartX = 0;
+let galleryStartAngle = 0;
+let galleryLastTime = performance.now();
+
+const galleryStep = 360 / galleryCards.length;
+
+function renderGallery() {
+  const radius = Math.max(
+    235,
+    Math.min(340, gallery.clientWidth * 0.72)
+  );
+
+  galleryCards.forEach((card, index) => {
+    const angle = index * galleryStep + galleryAngle;
+
+    card.style.transform =
+      `translate(-50%, -50%) rotateY(${angle}deg) ` +
+      `translateZ(${radius}px)`;
+  });
+}
+
+function animateGallery(now) {
+  const delta = Math.min((now - galleryLastTime) / 1000, 0.05);
+  galleryLastTime = now;
+
+  if (!galleryDragging) {
+    const difference = galleryTarget - galleryAngle;
+
+    if (Math.abs(difference) > 0.05) {
+      galleryAngle += difference * Math.min(1, delta * 5);
+    } else {
+      galleryAngle = galleryTarget;
+      galleryTarget += delta * 5;
+    }
+  }
+
+  renderGallery();
+  requestAnimationFrame(animateGallery);
+}
+
+gallery.addEventListener("pointerdown", event => {
+  galleryDragging = true;
+  galleryStartX = event.clientX;
+  galleryStartAngle = galleryAngle;
+  galleryTarget = galleryAngle;
+  gallery.setPointerCapture(event.pointerId);
+});
+
+gallery.addEventListener("pointermove", event => {
+  if (!galleryDragging) return;
+
+  const movement = event.clientX - galleryStartX;
+  galleryAngle = galleryStartAngle + movement * 0.45;
+});
+
+function finishGalleryDrag() {
+  if (!galleryDragging) return;
+
+  galleryDragging = false;
+
+  // Encaixa a imagem mais próxima da frente.
+  galleryTarget =
+    Math.round(galleryAngle / galleryStep) * galleryStep;
+}
+
+gallery.addEventListener("pointerup", finishGalleryDrag);
+gallery.addEventListener("pointercancel", finishGalleryDrag);
+
+window.addEventListener("resize", renderGallery);
+
+renderGallery();
+requestAnimationFrame(animateGallery);
+
   </script>
 </body>
 </html>
