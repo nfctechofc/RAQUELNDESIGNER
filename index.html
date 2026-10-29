@@ -960,6 +960,112 @@
   background: var(--pink);
   color: #fff;
 }
+/* Estilos da Interface de Horários Dinâmica */
+.days-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.day-pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: #f0f0f0;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+.day-pill.active {
+  background: var(--pink-soft);
+  color: var(--wine);
+  border-color: var(--pink);
+}
+
+.time-slots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.time-slot {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: white;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.time-slot:hover:not(.disabled) {
+  border-color: var(--wine);
+  color: var(--wine);
+}
+
+.time-slot.selected {
+  background: var(--wine);
+  color: white;
+  border-color: var(--wine);
+}
+
+.time-slot.disabled {
+  background: #f0f0f0;
+  color: #bbb;
+  border-color: #e0e0e0;
+  cursor: not-allowed;
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+/* Estilos para os botões de horários dinâmicos */
+.time-slots-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.time-slot-btn {
+  padding: 10px 8px;
+  text-align: center;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: white;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.time-slot-btn:hover:not(.disabled) {
+  border-color: var(--wine);
+  color: var(--wine);
+  background: var(--pink-soft);
+}
+
+.time-slot-btn.selected {
+  background: var(--wine);
+  color: white;
+  border-color: var(--wine);
+}
+
+.time-slot-btn.disabled {
+  background: #f4eeee;
+  color: #b5a8a9;
+  border-color: #ead2d4;
+  cursor: not-allowed;
+  text-decoration: line-through;
+  opacity: 0.6;
+}
   </style>
 </head>
 
@@ -1125,9 +1231,16 @@
 
               <div class="field">
                 <label for="appointmentTime">Horário desejado <span class="required">*</span></label>
-                <select id="appointmentTime" name="appointmentTime" required disabled>
+                <!-- Mantemos o select original escondido para validação nativa do form -->
+                <select id="appointmentTime" name="appointmentTime" required style="display: none;">
                   <option value="">Escolha a data primeiro</option>
                 </select>
+                
+                <!-- Container visual dinâmico estilo grade -->
+                <div class="time-slots-container" id="timeSlotsContainer">
+                  <small class="field-hint">Escolha a data primeiro para ver os horários.</small>
+                </div>
+
                 <small class="field-hint" id="timeHint">
                   Os horários dependem do dia escolhido.
                 </small>
@@ -1318,9 +1431,10 @@ const supabaseClient = window.supabase.createClient(
       }
     ];
 
-    const serviceSelect = document.getElementById("service");
+   const serviceSelect = document.getElementById("service");
     const dateInput = document.getElementById("appointmentDate");
     const timeSelect = document.getElementById("appointmentTime");
+    const timeSlotsContainer = document.getElementById("timeSlotsContainer");
     const timeHint = document.getElementById("timeHint");
     const form = document.getElementById("bookingForm");
     const formMessage = document.getElementById("formMessage");
@@ -1351,6 +1465,133 @@ const supabaseClient = window.supabase.createClient(
         year: "numeric"
       });
     }
+
+    // Configurar limites de data
+    const today = new Date();
+    dateInput.min = formatDateLocal(today);
+    const maxDate = new Date();
+    maxDate.setDate(today.getDate() + CONFIG.maxDaysAhead);
+    dateInput.max = formatDateLocal(maxDate);
+
+    // Evento ao alterar a data: busca no Supabase e gera os botões dinâmicos
+    dateInput.addEventListener("change", async function () {
+      const selectedDateStr = this.value;
+      timeSlotsContainer.innerHTML = '<small class="field-hint">Buscando horários...</small>';
+      timeSelect.innerHTML = '<option value="">Selecione...</option>';
+      timeSelect.value = "";
+
+      if (!selectedDateStr) {
+        timeSlotsContainer.innerHTML = '<small class="field-hint">Escolha a data primeiro para ver os horários.</small>';
+        return;
+      }
+
+      const dateObj = parseLocalDate(selectedDateStr);
+      const dayOfWeek = dateObj.getDay();
+      const availableHours = CONFIG.workingHours[dayOfWeek] || [];
+
+      if (availableHours.length === 0) {
+        timeSlotsContainer.innerHTML = '<small class="field-hint">Não há atendimento neste dia da semana. ♡</small>';
+        return;
+      }
+
+      // Busca no Supabase os horários já agendados para esta data
+      let bookedTimes = [];
+      try {
+        const { data, error } = await supabaseClient
+          .from("appointments") // Nome da tabela no seu Supabase
+          .select("appointment_time")
+          .eq("appointment_date", selectedDateStr)
+          .neq("status", "canceled");
+
+        if (!error && data) {
+          bookedTimes = data.map(item => item.appointment_time.slice(0, 5));
+        }
+      } catch (err) {
+        console.error("Erro ao verificar horários ocupados:", err);
+      }
+
+      timeSlotsContainer.innerHTML = "";
+
+      availableHours.forEach(time => {
+        const option = document.createElement("option");
+        option.value = time;
+        option.textContent = time;
+
+        const isBooked = bookedTimes.includes(time);
+        if (isBooked) {
+          option.disabled = true;
+        }
+        timeSelect.appendChild(option);
+
+        // Cria o botão visual dinâmico
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "time-slot-btn";
+        btn.textContent = time;
+
+        if (isBooked) {
+          btn.classList.add("disabled");
+          btn.title = "Horário já ocupado";
+        } else {
+          btn.addEventListener("click", () => {
+            document.querySelectorAll(".time-slot-btn").forEach(b => b.classList.remove("selected"));
+            btn.classList.add("selected");
+            timeSelect.value = time;
+          });
+        }
+
+        timeSlotsContainer.appendChild(btn);
+      });
+    });
+
+    // Envio do formulário salvando no Supabase
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      if (!timeSelect.value) {
+        showMessage("Por favor, selecione um horário disponível.", "error");
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Salvando agendamento...";
+
+      const payload = {
+        customer_name: document.getElementById("customerName").value,
+        customer_phone: document.getElementById("customerPhone").value,
+        service: serviceSelect.value,
+        appointment_date: dateInput.value,
+        appointment_time: timeSelect.value,
+        notes: document.getElementById("notes").value,
+        status: "pending"
+      };
+
+      try {
+        const { error } = await supabaseClient
+          .from("appointments")
+          .insert([payload]);
+
+        if (error) throw error;
+
+        const message = `Olá, Raquel! Gostaria de solicitar um agendamento:\n\n` +
+          `*Nome:* ${payload.customer_name}\n` +
+          `*Serviço:* ${payload.service}\n` +
+          `*Data:* ${formatDateBR(payload.appointment_date)}\n` +
+          `*Horário:* ${payload.appointment_time}`;
+
+        window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(message)}`, "_blank");
+
+        showMessage("Solicitação enviada com sucesso! Redirecionando...", "success");
+        form.reset();
+        timeSlotsContainer.innerHTML = '<small class="field-hint">Escolha a data primeiro para ver os horários.</small>';
+      } catch (err) {
+        console.error(err);
+        showMessage("Erro ao salvar o horário. Ele pode ter sido ocupado por outra pessoa instantes atrás. Tente outro.", "error");
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Enviar solicitação pelo WhatsApp ↗";
+      }
+    });
 
     function showMessage(message, type) {
       formMessage.textContent = message;
