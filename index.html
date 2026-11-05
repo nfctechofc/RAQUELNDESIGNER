@@ -1,7 +1,5 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <meta charset="UTF-8">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root {
@@ -286,7 +285,6 @@
     }
 
     /* Serviços */
-
     .services-section {
       background:
         radial-gradient(ellipse at 10% 15%, rgba(222,151,162,.12), transparent 35%),
@@ -406,7 +404,6 @@
     }
 
     /* Formulário */
-
     .booking-section {
       position: relative;
       overflow: hidden;
@@ -563,6 +560,42 @@
       line-height: 1.6;
     }
 
+    /* Container de Serviços por Checkbox no formulário */
+    .services-checkbox-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 220px;
+      overflow-y: auto;
+      padding: 10px;
+      border: 1px solid #e4ced0;
+      border-radius: 11px;
+      background: #fffdfc;
+    }
+
+    .service-checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--ink);
+      cursor: pointer;
+      padding: 6px 8px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .service-checkbox-item:hover {
+      background: var(--pink-soft);
+    }
+
+    .service-checkbox-item input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--wine);
+      cursor: pointer;
+    }
+
     .notice {
       display: flex;
       align-items: flex-start;
@@ -638,7 +671,6 @@
     }
 
     /* Informações */
-
     .info-section {
       padding: 60px 5%;
       background: var(--cream);
@@ -901,270 +933,208 @@
       }
     }
     
-/* Foto redonda da Raquel no início */
+    /* Foto redonda da Raquel no início */
+    .hero-profile {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 24px;
+      gap: 8px;
+    }
 
-.hero-profile {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 24px;
-  gap: 8px;
-}
+    .hero-profile img {
+      display: block;
+      width: 112px;
+      height: 112px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;
+      border: 3px solid var(--pink);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, .3);
+      box-sizing: border-box;
+    }
 
-.hero-profile img {
-  display: block;
-  width: 112px;
-  height: 112px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 50%;
-  border: 3px solid var(--pink);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, .3);
-  box-sizing: border-box;
-}
+    .hero-profile p {
+      margin: 0;
+      color: var(--pink);
+      font-family: "Playfair Display", serif;
+      font-size: 17px;
+    }
 
-.hero-profile p {
-  margin: 0;
-  color: var(--pink);
-  font-family: "Playfair Display", serif;
-  font-size: 17px;
-}
+    .hero-profile span {
+      color: rgba(255, 255, 255, .75);
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
 
-.hero-profile span {
-  color: rgba(255, 255, 255, .75);
-  font-size: 10px;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-}
+    @media (max-width: 650px) {
+      .hero-profile img {
+        width: 96px;
+        height: 96px;
+      }
+    }
 
-@media (max-width: 650px) {
-  .hero-profile img {
-    width: 96px;
-    height: 96px;
-  }
-}
+    .admin-login {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border: 1px solid var(--pink);
+      border-radius: 30px;
+      color: var(--pink);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: .3s ease;
+    }
 
-.admin-login {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 16px;
-  border: 1px solid var(--pink);
-  border-radius: 30px;
-  color: var(--pink);
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 600;
-  white-space: nowrap;
-  transition: .3s ease;
-}
+    .admin-login:hover {
+      background: var(--pink);
+      color: #fff;
+    }
 
-.admin-login:hover {
-  background: var(--pink);
-  color: #fff;
-}
-/* Estilos da Interface de Horários Dinâmica */
-.days-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 8px;
-}
+    /* Estilos para os botões de horários dinâmicos */
+    .time-slots-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
 
-.day-pill {
-  padding: 6px 14px;
-  border-radius: 20px;
-  background: #f0f0f0;
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  border: 1px solid transparent;
-}
+    .time-slot-btn {
+      padding: 10px 8px;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: white;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
 
-.day-pill.active {
-  background: var(--pink-soft);
-  color: var(--wine);
-  border-color: var(--pink);
-}
+    .time-slot-btn:hover:not(.disabled) {
+      border-color: var(--wine);
+      color: var(--wine);
+      background: var(--pink-soft);
+    }
 
-.time-slots-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
-  gap: 10px;
-  margin-top: 10px;
-}
+    .time-slot-btn.selected {
+      background: var(--wine);
+      color: white;
+      border-color: var(--wine);
+    }
 
-.time-slot {
-  padding: 10px;
-  text-align: center;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: white;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink);
-  cursor: pointer;
-  transition: all 0.2s;
-}
+    .time-slot-btn.disabled {
+      background: #f4eeee;
+      color: #b5a8a9;
+      border-color: #ead2d4;
+      cursor: not-allowed;
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
 
-.time-slot:hover:not(.disabled) {
-  border-color: var(--wine);
-  color: var(--wine);
-}
+    /* Galeria circular 3D */
+    .gallery-section {
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at center, #f8e6e8 0%, #fffdfb 68%);
+    }
 
-.time-slot.selected {
-  background: var(--wine);
-  color: white;
-  border-color: var(--wine);
-}
+    .circular-gallery {
+      position: relative;
+      width: 100%;
+      height: 390px;
+      perspective: 1100px;
+      touch-action: pan-y;
+      cursor: grab;
+      user-select: none;
+    }
 
-.time-slot.disabled {
-  background: #f0f0f0;
-  color: #bbb;
-  border-color: #e0e0e0;
-  cursor: not-allowed;
-  text-decoration: line-through;
-  opacity: 0.6;
-}
-/* Estilos para os botões de horários dinâmicos */
-.time-slots-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
-  gap: 8px;
-  margin-top: 8px;
-}
+    .circular-gallery:active {
+      cursor: grabbing;
+    }
 
-.time-slot-btn {
-  padding: 10px 8px;
-  text-align: center;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: white;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
+    .circular-gallery-ring {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+    }
 
-.time-slot-btn:hover:not(.disabled) {
-  border-color: var(--wine);
-  color: var(--wine);
-  background: var(--pink-soft);
-}
+    .gallery-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 210px;
+      height: 285px;
+      margin: 0;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,.9);
+      border-radius: 18px;
+      background: #571427;
+      box-shadow: 0 15px 35px rgba(83,24,39,.2);
+      backface-visibility: hidden;
+    }
 
-.time-slot-btn.selected {
-  background: var(--wine);
-  color: white;
-  border-color: var(--wine);
-}
+    .gallery-card img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
 
-.time-slot-btn.disabled {
-  background: #f4eeee;
-  color: #b5a8a9;
-  border-color: #ead2d4;
-  cursor: not-allowed;
-  text-decoration: line-through;
-  opacity: 0.6;
-}
+    .gallery-card figcaption {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 24px 12px 15px;
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      background: linear-gradient(transparent, rgba(35,10,18,.9));
+    }
 
-/* Galeria circular 3D */
-.gallery-section {
-  overflow: hidden;
-  background:
-    radial-gradient(ellipse at center, #f8e6e8 0%, #fffdfb 68%);
-}
+    .gallery-hint {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      text-align: center;
+    }
 
-.circular-gallery {
-  position: relative;
-  width: 100%;
-  height: 390px;
-  perspective: 1100px;
-  touch-action: pan-y;
-  cursor: grab;
-  user-select: none;
-}
+    .gallery-cta {
+      margin-top: 24px;
+      text-align: center;
+    }
 
-.circular-gallery:active {
-  cursor: grabbing;
-}
+    @media (max-width: 650px) {
+      .circular-gallery {
+        height: 330px;
+      }
 
-.circular-gallery-ring {
-  position: absolute;
-  inset: 0;
-  transform-style: preserve-3d;
-}
+      .gallery-card {
+        width: 165px;
+        height: 230px;
+      }
+    }
 
-.gallery-card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 210px;
-  height: 285px;
-  margin: 0;
-  overflow: hidden;
-  border: 2px solid rgba(255,255,255,.9);
-  border-radius: 18px;
-  background: #571427;
-  box-shadow: 0 15px 35px rgba(83,24,39,.2);
-  backface-visibility: hidden;
-}
-
-.gallery-card img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  pointer-events: none;
-  -webkit-user-drag: none;
-}
-
-.gallery-card figcaption {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 24px 12px 15px;
-  color: white;
-  font-size: 13px;
-  font-weight: 600;
-  text-align: center;
-  background: linear-gradient(transparent, rgba(35,10,18,.9));
-}
-
-.gallery-hint {
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: 11px;
-  text-align: center;
-}
-
-.gallery-cta {
-  margin-top: 24px;
-  text-align: center;
-}
-
-@media (max-width: 650px) {
-  .circular-gallery {
-    height: 330px;
-  }
-
-  .gallery-card {
-    width: 165px;
-    height: 230px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .circular-gallery-ring {
-    scroll-behavior: auto;
-  }
-}
-
+    #selectedServicesSummary {
+      margin-top: 8px;
+      padding: 12px;
+      border-radius: 12px;
+      background: #fff5f6;
+      color: var(--wine);
+      font-size: 12px;
+      line-height: 1.8;
+    }
   </style>
 </head>
 
@@ -1191,39 +1161,35 @@
         <a href="#agendar">Agendamento</a>
         <a href="#informacoes">Informações</a>
         <a href="admin.html" class="admin-login">
-  <i class="fas fa-user-shield"></i>
-  Login Admin
-</a>
+          <i class="fas fa-user-shield"></i>
+          Login Admin
+        </a>
       </div>
 
       <a class="nav-cta" href="#agendar">Agendar agora ↗</a>
-      
     </nav>
 
     <div class="hero-content">
       <div class="hero-copy">
-        
-<div class="hero-profile">
-  
-   <img
-    src="753381996_18094492793576649_2507489137348182838_n.jpg"
-    alt="Raquel Salazar, Nail Designer"
-    width="112"
-    height="112"
-  >
-  <p>Raquel Salazar </p>
-  <span>Nail Designer</span>
-</div>
+        <div class="hero-profile">
+          <img
+            src="img/753381996_18094492793576649_2507489137348182838_n.jpg"
+            alt="Raquel Salazar, Nail Designer"
+            width="112"
+            height="112"
+          >
+          <p>Raquel Salazar ♡</p>
+          <span>Nail Designer</span>
+        </div>
 
         <span class="eyebrow">Seu momento de autocuidado</span>
-        <h1>Suas unhas,<br>seu momento <span class="hero-heart"></span></h1>
+        <h1>Suas unhas,<br>seu momento <span class="hero-heart">♡</span></h1>
         <p>
           Realce sua beleza com delicadeza, elegância e cuidado
           em cada detalhe. Escolha seu serviço e solicite seu
           horário de atendimento.
         </p>
         <a class="button" href="#agendar">Solicitar agendamento ↗</a>
-        
       </div>
     </div>
   </header>
@@ -1251,78 +1217,76 @@
       </div>
     </section>
 
-<section class="section gallery-section" id="galeria">
-  <div class="section-inner">
-    <div class="section-heading">
-      <p class="section-kicker">Nosso trabalho</p>
-      <h2>Beleza em cada detalhe</h2>
-      <p class="section-intro">
-        Confira alguns trabalhos e inspire-se para seu próximo atendimento.
-      </p>
-    </div>
+    <section class="section gallery-section" id="galeria">
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="section-kicker">Nosso trabalho</p>
+          <h2>Beleza em cada detalhe</h2>
+          <p class="section-intro">
+            Confira alguns trabalhos e inspire-se para seu próximo atendimento.
+          </p>
+        </div>
 
-    <div class="circular-gallery">
-      
-<div class="circular-gallery-ring" id="galleryRing">
-  <figure class="gallery-card">
-    <img src="WhatsApp Image 2026-10-27 at 20.46.12.jpeg" alt="Alongamento de unhas">
-    <figcaption></figcaption>
-  </figure>
-  <figure class="gallery-card">
-    <img src="WhatsApp Image 2026-10-27 at 20.46.14 (1).jpeg" alt="Unhas decoradas">
-    <figcaption></figcaption>
-  </figure>
-  <figure class="gallery-card">
-    <img src="WhatsApp Image 2026-10-27 at 20.46.15.jpeg" alt="Manutenção de unhas">
-    <figcaption></figcaption>
-  </figure>
-  <figure class="gallery-card">
-    <img src="WhatsApp Image 2026-10-27 at 20.46.15 (1).jpeg" alt="Esmaltação de unhas">
-    <figcaption></figcaption>
-  </figure>
-  <figure class="gallery-card">
-    <img src="WhatsApp Image 2026-10-27 at 20.46.16.jpeg" alt="Unhas em gel">
-    <figcaption></figcaption>
-  </figure>
-  <figure class="gallery-card">
-    <img src="WhatsApp Image 2026-10-27 at 20.46.16 (1).jpeg" alt="Detalhes de nail design">
-    <figcaption></figcaption>
-  </figure>
-  <figure class="gallery-card">
-    <img src="WhatsApp Image 2026-10-27 at 20.46.17.jpeg" alt="Unhas com decoração delicada">
-    <figcaption></figcaption>
-  </figure>
-  <figure class="gallery-card">
-    <img src="WhatsApp Image 2026-10-27 at 20.46.19.jpeg" alt="Unhas francesinhas">
-    <figcaption></figcaption>
-  </figure>
-  <figure class="gallery-card">
-    <img src="WhatsApp Image 2026-10-27 at 20.46.19 (1).jpeg" alt="Unhas decoradas em tons rosados">
-    <figcaption></figcaption>
-  </figure>
-  <figure class="gallery-card">
-    <img src="WhatsApp Image 2026-10-27 at 20.46.18.jpeg" alt="Unhas elegantes">
-    <figcaption></figcaption>
-  </figure>
-  <figure class="gallery-card">
-    <img src="WhatsApp Image 2026-10-27 at 20.46.18 (1).jpeg" alt="Nail art moderna">
-    <figcaption></figcaption>
-  </figure>
-  <figure class="gallery-card">
-    <img src="WhatsApp Image 2026-10-27 at 20.46.18 (2).jpeg" alt="Design exclusivo de unhas">
-    <figcaption></figcaption>
-  </figure>
-</div>
+        <div class="circular-gallery">
+          <div class="circular-gallery-ring" id="galleryRing">
+            <figure class="gallery-card">
+              <img src="WhatsApp Image 2026-10-27 at 20.46.12.jpeg" alt="Alongamento de unhas">
+              <figcaption>Alongamentos</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="WhatsApp Image 2026-10-27 at 20.46.14 (1).jpeg" alt="Unhas decoradas">
+              <figcaption>Nail art</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="WhatsApp Image 2026-10-27 at 20.46.15.jpeg" alt="Manutenção de unhas">
+              <figcaption>Manutenções</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="WhatsApp Image 2026-10-27 at 20.46.15 (1).jpeg" alt="Esmaltação de unhas">
+              <figcaption>Esmaltação</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="WhatsApp Image 2026-10-27 at 20.46.16.jpeg" alt="Unhas em gel">
+              <figcaption>Unhas em gel</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="WhatsApp Image 2026-10-27 at 20.46.16 (1).jpeg" alt="Detalhes de nail design">
+              <figcaption>Detalhes</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="WhatsApp Image 2026-10-27 at 20.46.17.jpeg" alt="Unhas com decoração delicada">
+              <figcaption>Decoração delicada</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="WhatsApp Image 2026-10-27 at 20.46.19.jpeg" alt="Unhas francesinhas">
+              <figcaption>Francesinhas</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="WhatsApp Image 2026-10-27 at 20.46.19 (1).jpeg" alt="Unhas decoradas em tons rosados">
+              <figcaption>Tons rosados</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="WhatsApp Image 2026-10-27 at 20.46.18.jpeg" alt="Unhas elegantes">
+              <figcaption>Elegância</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="WhatsApp Image 2026-10-27 at 20.46.18 (1).jpeg" alt="Nail art moderna">
+              <figcaption>Nail art moderna</figcaption>
+            </figure>
+            <figure class="gallery-card">
+              <img src="WhatsApp Image 2026-10-27 at 20.46.18 (2).jpeg" alt="Design exclusivo de unhas">
+              <figcaption>Design exclusivo</figcaption>
+            </figure>
+          </div>
+        </div>
 
-    </div>
+        <p class="gallery-hint">Arraste para girar ♡</p>
 
-    <p class="gallery-hint">Arraste para girar ♡</p>
-
-    <div class="gallery-cta">
-      <a href="#agendar" class="button">Agende seu horário ↗</a>
-    </div>
-  </div>
-</section>
+        <div class="gallery-cta">
+          <a href="#agendar" class="button">Agende seu horário ↗</a>
+        </div>
+      </div>
+    </section>
 
     <section class="section booking-section" id="agendar">
       <div class="section-inner">
@@ -1385,11 +1349,16 @@
                   required>
               </div>
 
+              <!-- Substituição do Select Multiple por Checkboxes Customizadas -->
               <div class="field full">
-                <label for="service">Serviço desejado <span class="required">*</span></label>
-                <select id="service" name="service" required>
-                  <option value="">Selecione um serviço</option>
-                </select>
+                <label>Serviços desejados <span class="required">*</span> (Selecione um ou mais)</label>
+                <div class="services-checkbox-container" id="servicesCheckboxContainer">
+                  <!-- Gerado via JavaScript -->
+                </div>
+                <small class="field-hint">
+                  Você pode marcar quantos serviços desejar.
+                </small>
+                <div id="selectedServicesSummary"></div>
               </div>
 
               <div class="field">
@@ -1404,12 +1373,10 @@
 
               <div class="field">
                 <label for="appointmentTime">Horário desejado <span class="required">*</span></label>
-                <!-- Mantemos o select original escondido para validação nativa do form -->
                 <select id="appointmentTime" name="appointmentTime" required style="display: none;">
                   <option value="">Escolha a data primeiro</option>
                 </select>
                 
-                <!-- Container visual dinâmico estilo grade -->
                 <div class="time-slots-container" id="timeSlotsContainer">
                   <small class="field-hint">Escolha a data primeiro para ver os horários.</small>
                 </div>
@@ -1512,99 +1479,51 @@
       </div>
     </div>
   </footer>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
-   
-const SUPABASE_URL = "https://kijuuwswmvamkharpxso.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_rpsqLWRScz2YkF422YDD7A_cH06D8Ws";
+    const SUPABASE_URL = "https://kijuuwswmvamkharpxso.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_rpsqLWRScz2YkF422YDD7A_cH06D8Ws";
 
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_ANON_KEY
-);
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+
     const CONFIG = {
-      whatsapp: "5521977324555",
+  whatsapp: "5521985791820",
 
-     workingHours: {
-  0: [], // Domingo: fechado
-   1: ["09:00", "10:30", "13:00", "14:30", "16:00"], // Segunda
-  2: ["09:00", "10:30", "13:00", "14:30", "16:00"], // Terça
-  3: [], // Quarta: fechado
-  4: ["07:00", "08:30", "10:00", "12:30", "14:00", "15:30"], // Quinta
-  5: ["07:00", "08:30", "10:00", "12:30", "14:00", "15:30"], // Sexta
-  6: ["07:00", "08:30", "10:00", "12:30", "14:00", "15:30"]  // Sábado
-},
+  workingHours: {
+    0: [], // Domingo - fechado
 
-      maxDaysAhead: 90
-    };
+    1: ["08:00", "09:30", "11:00", "13:30", "15:00", "16:30", "18:00"], // Segunda
+
+    2: ["08:00", "09:30", "11:00", "13:30", "15:00", "16:30", "18:00"], // Terça
+
+    3: [], // Quarta - fechado
+
+    4: ["08:00", "09:30", "11:00", "13:30", "15:00", "16:30", "18:00"], // Quinta
+
+    5: ["08:00", "09:30", "11:00", "13:30", "15:00", "16:30", "18:00"], // Sexta
+
+    6: ["08:00", "09:30", "11:00", "13:30", "15:00", "16:30", "18:00"]  // Sábado
+  },
+
+  maxDaysAhead: 90
+};
 
     const services = [
-      {
-        name: "Molde F1",
-        price: 90,
-        description: "Alongamento com acabamento elegante.",
-        symbol: "",
-        category: "service"
-      },
-      {
-        name: "Gel na tips",
-        price: 100,
-        description: "Alongamento com tips e acabamento em gel.",
-        symbol: "",
-        category: "service"
-      },
-      {
-        name: "Mão e pé tradicional",
-        price: 50,
-        description: "Cuidados tradicionais para mãos e pés.",
-        symbol: "",
-        category: "service"
-      },
-      {
-        name: "Pé",
-        price: 30,
-        description: "Cuidado e beleza para os pés.",
-        symbol: "",
-        category: "service"
-      },
-      {
-        name: "Mão",
-        price: 30,
-        description: "Cuidado tradicional para as unhas das mãos.",
-        symbol: "",
-        category: "service"
-      },
-      {
-        name: "Postiça realista",
-        price: 50,
-        description: "Visual delicado e natural.",
-        symbol: "",
-        category: "service"
-      },
-      {
-        name: "Banho de gel",
-        price: 70,
-        description: "Reforço e brilho para as unhas naturais.",
-        symbol: "",
-        category: "service"
-      },
-      {
-        name: "Manutenção de molde F1",
-        price: 80,
-        description: "Manutenção do alongamento em molde F1.",
-        symbol: "",
-        category: "maintenance"
-      },
-      {
-        name: "Manutenção de banho de gel",
-        price: 60,
-        description: "Manutenção do banho de gel.",
-        symbol: "",
-        category: "maintenance"
-      }
+      { name: "Molde F1", price: 90, description: "Alongamento com acabamento elegante.", symbol: "✧", category: "service" },
+      { name: "Gel na tips", price: 100, description: "Alongamento com tips e acabamento em gel.", symbol: "♡", category: "service" },
+      { name: "Mão e pé tradicional", price: 50, description: "Cuidados tradicionais para mãos e pés.", symbol: "❀", category: "service" },
+      { name: "Pé", price: 30, description: "Cuidado e beleza para os pés.", symbol: "✿", category: "service" },
+      { name: "Mão", price: 30, description: "Cuidado tradicional para as unhas das mãos.", symbol: "♡", category: "service" },
+      { name: "Postiça realista", price: 50, description: "Visual delicado e natural.", symbol: "✧", category: "service" },
+      { name: "Banho de gel", price: 70, description: "Reforço e brilho para as unhas naturais.", symbol: "❀", category: "service" },
+      { name: "Manutenção de molde F1", price: 80, description: "Manutenção do alongamento em molde F1.", symbol: "⟳", category: "maintenance" },
+      { name: "Manutenção de banho de gel", price: 60, description: "Manutenção do banho de gel.", symbol: "⟳", category: "maintenance" }
     ];
 
-   const serviceSelect = document.getElementById("service");
     const dateInput = document.getElementById("appointmentDate");
     const timeSelect = document.getElementById("appointmentTime");
     const timeSlotsContainer = document.getElementById("timeSlotsContainer");
@@ -1612,6 +1531,7 @@ const supabaseClient = window.supabase.createClient(
     const form = document.getElementById("bookingForm");
     const formMessage = document.getElementById("formMessage");
     const submitButton = document.getElementById("submitButton");
+    const servicesCheckboxContainer = document.getElementById("servicesCheckboxContainer");
 
     const brl = new Intl.NumberFormat("pt-BR", {
       style: "currency",
@@ -1646,7 +1566,31 @@ const supabaseClient = window.supabase.createClient(
     maxDate.setDate(today.getDate() + CONFIG.maxDaysAhead);
     dateInput.max = formatDateLocal(maxDate);
 
-    // Evento ao alterar a data: busca no Supabase e gera os botões dinâmicos
+    // Criar checkboxes de serviços no formulário
+    function populateServiceCheckboxes() {
+      servicesCheckboxContainer.innerHTML = "";
+      services.forEach(item => {
+        const label = document.createElement("label");
+        label.className = "service-checkbox-item";
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.name = "serviceCheckbox";
+        checkbox.value = item.name;
+
+        checkbox.addEventListener("change", () => {
+          updateSelectedCards();
+        });
+
+        const span = document.createElement("span");
+        span.textContent = `${item.name} — ${brl.format(item.price)}`;
+
+        label.append(checkbox, span);
+        servicesCheckboxContainer.appendChild(label);
+      });
+    }
+
+    // Evento ao alterar a data: busca no Supabase e gera os horários
     dateInput.addEventListener("change", async function () {
       const selectedDateStr = this.value;
       timeSlotsContainer.innerHTML = '<small class="field-hint">Buscando horários...</small>';
@@ -1667,11 +1611,10 @@ const supabaseClient = window.supabase.createClient(
         return;
       }
 
-      // Busca no Supabase os horários já agendados para esta data
       let bookedTimes = [];
       try {
         const { data, error } = await supabaseClient
-          .from("appointments") // Nome da tabela no seu Supabase
+          .from("appointments")
           .select("appointment_time")
           .eq("appointment_date", selectedDateStr)
           .neq("status", "canceled");
@@ -1696,7 +1639,6 @@ const supabaseClient = window.supabase.createClient(
         }
         timeSelect.appendChild(option);
 
-        // Cria o botão visual dinâmico
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "time-slot-btn";
@@ -1715,55 +1657,6 @@ const supabaseClient = window.supabase.createClient(
 
         timeSlotsContainer.appendChild(btn);
       });
-    });
-
-    // Envio do formulário salvando no Supabase
-    form.addEventListener("submit", async function (e) {
-      e.preventDefault();
-
-      if (!timeSelect.value) {
-        showMessage("Por favor, selecione um horário disponível.", "error");
-        return;
-      }
-
-      submitButton.disabled = true;
-      submitButton.textContent = "Salvando agendamento...";
-
-      const payload = {
-        customer_name: document.getElementById("customerName").value,
-        customer_phone: document.getElementById("customerPhone").value,
-        service: serviceSelect.value,
-        appointment_date: dateInput.value,
-        appointment_time: timeSelect.value,
-        notes: document.getElementById("notes").value,
-        status: "pending"
-      };
-
-      try {
-        const { error } = await supabaseClient
-          .from("appointments")
-          .insert([payload]);
-
-        if (error) throw error;
-
-        const message = `Olá, Raquel! Gostaria de solicitar um agendamento:\n\n` +
-          `*Nome:* ${payload.customer_name}\n` +
-          `*Serviço:* ${payload.service}\n` +
-          `*Data:* ${formatDateBR(payload.appointment_date)}\n` +
-          `*Horário:* ${payload.appointment_time}`;
-
-        window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(message)}`, "_blank");
-
-        showMessage("Solicitação enviada com sucesso! Redirecionando...", "success");
-        form.reset();
-        timeSlotsContainer.innerHTML = '<small class="field-hint">Escolha a data primeiro para ver os horários.</small>';
-      } catch (err) {
-        console.error(err);
-        showMessage("Erro ao salvar o horário. Ele pode ter sido ocupado por outra pessoa instantes atrás. Tente outro.", "error");
-      } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = "Enviar solicitação pelo WhatsApp ↗";
-      }
     });
 
     function showMessage(message, type) {
@@ -1808,12 +1701,19 @@ const supabaseClient = window.supabase.createClient(
           button.textContent = "Escolher";
 
           button.addEventListener("click", () => {
-            serviceSelect.value = item.name;
-            updateSelectedCards();
-            document.getElementById("agendar").scrollIntoView({
-              behavior: "smooth",
-              block: "start"
-            });
+            // Achar o checkbox correspondente no formulário
+            const checkboxes = [...document.querySelectorAll('input[name="serviceCheckbox"]')];
+            const targetCheckbox = checkboxes.find(cb => cb.value === item.name);
+
+            if (targetCheckbox) {
+              targetCheckbox.checked = !targetCheckbox.checked;
+              updateSelectedCards();
+
+              document.getElementById("agendar").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+              });
+            }
           });
 
           bottom.append(price, button);
@@ -1822,105 +1722,45 @@ const supabaseClient = window.supabase.createClient(
         });
     }
 
-    function populateServiceSelect() {
-      services.forEach(item => {
-        const option = document.createElement("option");
-        option.value = item.name;
-        option.textContent = `${item.name} — ${brl.format(item.price)}`;
-        serviceSelect.appendChild(option);
-      });
-    }
-
     function updateSelectedCards() {
+      const checkedBoxes = [...document.querySelectorAll('input[name="serviceCheckbox"]:checked')];
+      const selectedNames = checkedBoxes.map(cb => cb.value);
+
       document.querySelectorAll(".service-card").forEach(card => {
         const title = card.querySelector("h3");
         const button = card.querySelector(".select-service");
-        const selected = title.textContent === serviceSelect.value;
+        const selected = selectedNames.includes(title.textContent);
 
         card.classList.toggle("selected", selected);
         button.textContent = selected ? "Selecionado ✓" : "Escolher";
         button.setAttribute("aria-pressed", String(selected));
       });
+
+      updateServicesSummary(checkedBoxes);
     }
 
-    function updateAvailableTimes() {
-      clearMessage();
-      timeSelect.replaceChildren();
+    function updateServicesSummary(checkedBoxes) {
+      const summary = document.getElementById("selectedServicesSummary");
 
-      if (!dateInput.value) {
-        timeSelect.add(new Option("Escolha a data primeiro", ""));
-        timeSelect.disabled = true;
-        timeHint.textContent = "Os horários dependem do dia escolhido.";
+      const total = checkedBoxes.reduce((sum, cb) => {
+        const service = services.find(item => item.name === cb.value);
+        return sum + (service ? service.price : 0);
+      }, 0);
+
+      if (!checkedBoxes.length) {
+        summary.innerHTML = "";
         return;
       }
 
-      const selectedDate = parseLocalDate(dateInput.value);
-      const day = selectedDate.getDay();
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-
-      const maxDate = new Date(today);
-      maxDate.setDate(maxDate.getDate() + CONFIG.maxDaysAhead);
-
-      if (selectedDate < today || selectedDate > maxDate) {
-        timeSelect.add(new Option("Data fora do período", ""));
-        timeSelect.disabled = true;
-        timeHint.textContent = "Escolha uma data dentro do período permitido.";
-        return;
-      }
-
-      const times = CONFIG.workingHours[day] || [];
-
-      if (!times.length) {
-        timeSelect.add(new Option("Dia sem atendimento", ""));
-        timeSelect.disabled = true;
-        timeHint.textContent = "A Raquel não atende neste dia. Escolha outra data.";
-        return;
-      }
-
-      const now = new Date();
-      const isToday = formatDateLocal(today) === dateInput.value;
-
-      const availableSuggestions = times.filter(time => {
-        if (!isToday) return true;
-
-        const [hour, minute] = time.split(":").map(Number);
-        const slot = new Date();
-        slot.setHours(hour, minute, 0, 0);
-
-        return slot > now;
-      });
-
-      if (!availableSuggestions.length) {
-        timeSelect.add(new Option("Sem horários restantes hoje", ""));
-        timeSelect.disabled = true;
-        timeHint.textContent = "Escolha outra data para solicitar atendimento.";
-        return;
-      }
-
-      timeSelect.add(new Option("Selecione um horário", ""));
-      availableSuggestions.forEach(time => {
-        timeSelect.add(new Option(time, time));
-      });
-
-      timeSelect.disabled = false;
-      timeHint.textContent =
-        "Horários sugeridos. A disponibilidade será confirmada pela Raquel.";
-    }
-
-    function configureDateLimits() {
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-
-      const maxDate = new Date(today);
-      maxDate.setDate(maxDate.getDate() + CONFIG.maxDaysAhead);
-
-      dateInput.min = formatDateLocal(today);
-      dateInput.max = formatDateLocal(maxDate);
+      summary.innerHTML = `
+        <strong>Serviços selecionados:</strong><br>
+        ${checkedBoxes.map(cb => "♡ " + cb.value).join("<br>")}
+        <hr style="border:0;border-top:1px solid var(--border);margin:10px 0">
+        <strong>Total: ${brl.format(total)}</strong>
+      `;
     }
 
     function validWhatsAppNumber(number) {
-      // Número internacional com DDI, DDD e telefone.
       return /^\d{12,13}$/.test(number);
     }
 
@@ -1931,15 +1771,17 @@ const supabaseClient = window.supabase.createClient(
       if (!form.reportValidity()) return;
 
       if (!validWhatsAppNumber(CONFIG.whatsapp)) {
-        showMessage(
-          "O WhatsApp da profissional ainda não foi configurado. Atualize o número na seção CONFIGURAÇÕES do código.",
-          "error"
-        );
+        showMessage("Configure o WhatsApp da profissional.", "error");
         return;
       }
 
-      if (!serviceSelect.value || !dateInput.value || !timeSelect.value) {
-        showMessage("Selecione o serviço, a data e o horário desejados.", "error");
+      const checkedBoxes = [...document.querySelectorAll('input[name="serviceCheckbox"]:checked')];
+      const selectedServices = checkedBoxes
+        .map(cb => services.find(item => item.name === cb.value))
+        .filter(Boolean);
+
+      if (!selectedServices.length || !dateInput.value || !timeSelect.value) {
+        showMessage("Selecione pelo menos um serviço, a data e o horário.", "error");
         return;
       }
 
@@ -1947,17 +1789,7 @@ const supabaseClient = window.supabase.createClient(
       const times = CONFIG.workingHours[date.getDay()] || [];
 
       if (!times.includes(timeSelect.value)) {
-        showMessage(
-          "Esse horário não faz parte dos horários configurados. Escolha outra opção.",
-          "error"
-        );
-        updateAvailableTimes();
-        return;
-      }
-
-      const service = services.find(item => item.name === serviceSelect.value);
-      if (!service) {
-        showMessage("Selecione um serviço válido.", "error");
+        showMessage("Horário inválido. Escolha outra opção.", "error");
         return;
       }
 
@@ -1970,92 +1802,92 @@ const supabaseClient = window.supabase.createClient(
         return;
       }
 
+      const serviceNames = selectedServices.map(service => service.name);
+      const total = selectedServices.reduce((sum, service) => sum + service.price, 0);
+
       const message = [
-        " *SOLICITAÇÃO DE AGENDAMENTO*",
+        "*SOLICITAÇÃO DE AGENDAMENTO*",
         "",
         "Olá, Raquel! Gostaria de solicitar um horário.",
         "",
-        " *Nome:* " + name,
-        " *WhatsApp da cliente:* " + phone,
-        " *Serviço:* " + service.name,
-        " *Valor informado:* " + brl.format(service.price),
-        " *Data desejada:* " + formatDateBR(dateInput.value),
-        " *Horário desejado:* " + timeSelect.value,
-        notes ? " *Observações:* " + notes : "",
+        "*Nome:* " + name,
+        "*WhatsApp:* " + phone,
         "",
-        "Aguardo a confirmação da disponibilidade. Obrigada! ♡"
+        "*Serviços escolhidos:*",
+        ...selectedServices.map(service =>
+          "♡ " + service.name + " — " + brl.format(service.price)
+        ),
+        "",
+        "*VALOR TOTAL: " + brl.format(total) + "*",
+        "",
+        "*Data:* " + formatDateBR(dateInput.value),
+        "*Horário:* " + timeSelect.value,
+        notes ? "*Observações:* " + notes : "",
+        "",
+        "Aguardo a confirmação. Obrigada! ♡"
       ].filter(Boolean).join("\n");
 
       const whatsappURL =
-  "https://wa.me/" + CONFIG.whatsapp +
-  "?text=" + encodeURIComponent(message);
+        "https://wa.me/" + CONFIG.whatsapp +
+        "?text=" + encodeURIComponent(message);
 
-// Abre uma janela para evitar bloqueio do navegador.
-const whatsappWindow = window.open("about:blank", "_blank");
+      const whatsappWindow = window.open("about:blank", "_blank");
 
-submitButton.disabled = true;
-submitButton.textContent = "Salvando agendamento...";
+      submitButton.disabled = true;
+      submitButton.textContent = "Salvando agendamento...";
 
-try {
-  const { error } = await supabaseClient
-    .from("appointments")
-    .insert({
-      client_name: name,
-      client_phone: phone,
-      service_name: service.name,
-      service_price: service.price,
-      appointment_date: dateInput.value,
-      appointment_time: timeSelect.value,
-      notes: notes || null,
-      status: "pending"
-    });
+      try {
+        const { error } = await supabaseClient
+          .from("appointments")
+          .insert({
+            client_name: name,
+            client_phone: phone,
+            service_name: serviceNames.join(" + "),
+            service_price: total,
+            appointment_date: dateInput.value,
+            appointment_time: timeSelect.value,
+            notes: notes || null,
+            status: "pending"
+          });
 
-  if (error) {
-    console.error(error);
+        if (error) throw error;
 
-    if (whatsappWindow) whatsappWindow.close();
+        showMessage(
+          "Agendamento registrado! Aguarde a confirmação da Raquel.",
+          "success"
+        );
 
-    showMessage(
-      "Não foi possível salvar o agendamento. Tente novamente.",
-      "error"
-    );
-    return;
-  }
+        if (whatsappWindow) {
+          whatsappWindow.location.href = whatsappURL;
+        } else {
+          const link = document.createElement("a");
+          link.href = whatsappURL;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          link.textContent = "Abrir WhatsApp ↗";
+          link.className = "button";
 
-  showMessage(
-    "Agendamento registrado! Seu pedido está pendente de confirmação pela Raquel.",
-    "success"
-  );
+          formMessage.appendChild(document.createElement("br"));
+          formMessage.appendChild(link);
+        }
 
-  if (whatsappWindow) {
-    whatsappWindow.location.href = whatsappURL;
-  } else {
-    const link = document.createElement("a");
-    link.href = whatsappURL;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    link.textContent = "Abrir WhatsApp e enviar solicitação ↗";
-    link.className = "button";
+        form.reset();
+        updateSelectedCards();
 
-    formMessage.appendChild(document.createElement("br"));
-    formMessage.appendChild(link);
-  }
-} catch (error) {
-  console.error(error);
+      } catch (error) {
+        console.error(error);
+        if (whatsappWindow) whatsappWindow.close();
+        showMessage(
+          "Não foi possível salvar o agendamento. Tente novamente.",
+          "error"
+        );
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Enviar solicitação pelo WhatsApp ↗";
+      }
+    }
 
-  if (whatsappWindow) whatsappWindow.close();
-
-  showMessage(
-    "Erro de conexão ao salvar o agendamento. Tente novamente.",
-    "error"
-  );
-} finally {
-  submitButton.disabled = false;
-  submitButton.textContent = "Enviar solicitação pelo WhatsApp ↗";
-}
-}
-
-    // Menu para dispositivos móveis.
+    // Menu para dispositivos móveis
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
 
@@ -2071,102 +1903,88 @@ try {
       });
     });
 
-        // Inicialização da página.
+    // Inicialização da página
     renderServices("service", "servicesGrid");
     renderServices("maintenance", "maintenanceGrid");
-    populateServiceSelect();
-    configureDateLimits();
-    updateAvailableTimes();
+    populateServiceCheckboxes();
 
-    serviceSelect.addEventListener("change", updateSelectedCards);
-    dateInput.addEventListener("change", updateAvailableTimes);
     form.addEventListener("submit", submitBooking);
-
-    document.getElementById("currentYear").textContent =
-      new Date().getFullYear();
-
-    // Atualiza a lista caso a página permaneça aberta até outro dia.
-    document.addEventListener("visibilitychange", () => {
-      if (!document.hidden) updateAvailableTimes();
+    dateInput.addEventListener("change", () => {
+      // Limpa ou atualiza horários se necessário
     });
-    
-const galleryRing = document.getElementById("galleryRing");
-const gallery = document.querySelector(".circular-gallery");
-const galleryCards = [...galleryRing.querySelectorAll(".gallery-card")];
 
-let galleryAngle = 0;
-let galleryTarget = 0;
-let galleryDragging = false;
-let galleryStartX = 0;
-let galleryStartAngle = 0;
-let galleryLastTime = performance.now();
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
 
-const galleryStep = 360 / galleryCards.length;
+    // Galeria circular 3D
+    const galleryRing = document.getElementById("galleryRing");
+    const gallery = document.querySelector(".circular-gallery");
+    const galleryCards = [...galleryRing.querySelectorAll(".gallery-card")];
 
-function renderGallery() {
-  const radius = Math.max(300, Math.min(450, gallery.clientWidth * 0.95));
+    let galleryAngle = 0;
+    let galleryTarget = 0;
+    let galleryDragging = false;
+    let galleryStartX = 0;
+    let galleryStartAngle = 0;
+    let galleryLastTime = performance.now();
 
-  galleryCards.forEach((card, index) => {
-    const angle = index * galleryStep + galleryAngle;
+    const galleryStep = 360 / galleryCards.length;
 
-    card.style.transform =
-      `translate(-50%, -50%) rotateY(${angle}deg) ` +
-      `translateZ(${radius}px)`;
-  });
-}
+    function renderGallery() {
+      const radius = Math.max(235, Math.min(340, gallery.clientWidth * 0.72));
 
-function animateGallery(now) {
-  const delta = Math.min((now - galleryLastTime) / 1000, 0.05);
-  galleryLastTime = now;
-
-  if (!galleryDragging) {
-    const difference = galleryTarget - galleryAngle;
-
-    if (Math.abs(difference) > 0.05) {
-      galleryAngle += difference * Math.min(1, delta * 5);
-    } else {
-      galleryAngle = galleryTarget;
-      galleryTarget += delta * 5;
+      galleryCards.forEach((card, index) => {
+        const angle = index * galleryStep + galleryAngle;
+        card.style.transform =
+          `translate(-50%, -50%) rotateY(${angle}deg) ` +
+          `translateZ(${radius}px)`;
+      });
     }
-  }
 
-  renderGallery();
-  requestAnimationFrame(animateGallery);
-}
+    function animateGallery(now) {
+      const delta = Math.min((now - galleryLastTime) / 1000, 0.05);
+      galleryLastTime = now;
 
-gallery.addEventListener("pointerdown", event => {
-  galleryDragging = true;
-  galleryStartX = event.clientX;
-  galleryStartAngle = galleryAngle;
-  galleryTarget = galleryAngle;
-  gallery.setPointerCapture(event.pointerId);
-});
+      if (!galleryDragging) {
+        const difference = galleryTarget - galleryAngle;
 
-gallery.addEventListener("pointermove", event => {
-  if (!galleryDragging) return;
+        if (Math.abs(difference) > 0.05) {
+          galleryAngle += difference * Math.min(1, delta * 5);
+        } else {
+          galleryAngle = galleryTarget;
+          galleryTarget += delta * 5;
+        }
+      }
 
-  const movement = event.clientX - galleryStartX;
-  galleryAngle = galleryStartAngle + movement * 0.45;
-});
+      renderGallery();
+      requestAnimationFrame(animateGallery);
+    }
 
-function finishGalleryDrag() {
-  if (!galleryDragging) return;
+    gallery.addEventListener("pointerdown", event => {
+      galleryDragging = true;
+      galleryStartX = event.clientX;
+      galleryStartAngle = galleryAngle;
+      galleryTarget = galleryAngle;
+      gallery.setPointerCapture(event.pointerId);
+    });
 
-  galleryDragging = false;
+    gallery.addEventListener("pointermove", event => {
+      if (!galleryDragging) return;
+      const movement = event.clientX - galleryStartX;
+      galleryAngle = galleryStartAngle + movement * 0.45;
+    });
 
-  // Encaixa a imagem mais próxima da frente.
-  galleryTarget =
-    Math.round(galleryAngle / galleryStep) * galleryStep;
-}
+    function finishGalleryDrag() {
+      if (!galleryDragging) return;
+      galleryDragging = false;
+      galleryTarget = Math.round(galleryAngle / galleryStep) * galleryStep;
+    }
 
-gallery.addEventListener("pointerup", finishGalleryDrag);
-gallery.addEventListener("pointercancel", finishGalleryDrag);
+    gallery.addEventListener("pointerup", finishGalleryDrag);
+    gallery.addEventListener("pointercancel", finishGalleryDrag);
+    window.addEventListener("resize", renderGallery);
 
-window.addEventListener("resize", renderGallery);
-
-renderGallery();
-requestAnimationFrame(animateGallery);
-
+    renderGallery();
+    requestAnimationFrame(animateGallery);
   </script>
 </body>
 </html>
